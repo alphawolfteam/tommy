@@ -35,7 +35,7 @@
   font-family: rubik;
   font-size: 14px;
   color: rgba(59, 59, 59, 0.65);
-  top: 50px;
+  top: 60px;
 }
 
 .StatusImg {
@@ -121,4 +121,14 @@
 .background {
   height: 100%;
   width: 100%;
+}
+
+.team-title{
+  right: 135px;
+  position: absolute;
+  top: 37px;
+  font-family: rubik;
+  color: #3b3b3b;
+  direction: rtl;
+  font-size: 13px;
 }

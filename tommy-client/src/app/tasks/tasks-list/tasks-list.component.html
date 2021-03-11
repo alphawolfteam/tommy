@@ -33,6 +33,7 @@
                 <div [ngClass]="{'taskNameDecorationOpen': tasksFlag, 'taskNameDecorationClosed' : !tasksFlag}"></div>
                 <p class="task-date">{{ task.open_date }}</p>
                 <p class="task-title">{{ getTaskTitle(task) }}</p>
+                <p class="team-title" *ngIf="getGroup(task)">צוות מטפל - {{ getGroup(task) }}</p>
                 <p class="task-id">פניה מס' {{ task.id }}</p>
             </div>
         </div>

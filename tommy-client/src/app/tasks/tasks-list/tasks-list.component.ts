@@ -62,6 +62,14 @@ export class TasksListComponent {
     return task.service || "לא צויין";
   }
 
+  getGroup(task: taskModel1): string | boolean {
+    const taskGroup = task.group;
+    if (taskGroup && taskGroup !== null) {
+      return ` ${taskGroup}`;
+    }
+    return false;
+  }
+
   async openTaskMsgDialog(task: taskModel1) {
     const checkedAlert = Cookies.get("checkedMerkazTomAlert") === "true";
     if (checkedAlert) {
