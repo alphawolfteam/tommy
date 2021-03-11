@@ -34,7 +34,8 @@ export const config = {
         }
         return taskBody;
     },
-    GET_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/pcat?WC=id%3D${categoryId}`,
+    GET_PCAT_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/pcat?WC=id%3D${categoryId}`,
+    GET_CHGCAT_CATEGORY_KNOWLEDGE_ARTICLE: (categoryId: string) => `/api/caisd-rest/chgcat?WC=id%3D${categoryId}`,
     GET_HOMEPAGE_TUTORIAL_URL: '/openconf',
     GET_LEHAVA_DATA: "/lehavadata",
     fileSizeLimit: 7340032,

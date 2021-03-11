@@ -302,8 +302,15 @@ export class ApigetService {
     );
   }
 
-  getCategoryDescription(categoryId: string) {
-    return this.http.get(config.GET_CATEGORY_KNOWLEDGE_ARTICLE(categoryId), {
+  getIncidentCategoryDescription(categoryId: string) {
+    return this.http.get(config.GET_PCAT_CATEGORY_KNOWLEDGE_ARTICLE(categoryId), {
+      withCredentials: true,
+      headers: this.categoryDescriptionHeaders,
+    });
+  }
+  
+  getRequestCategoryDescription(categoryId: string) {
+    return this.http.get(config.GET_CHGCAT_CATEGORY_KNOWLEDGE_ARTICLE(categoryId), {
       withCredentials: true,
       headers: this.categoryDescriptionHeaders,
     });

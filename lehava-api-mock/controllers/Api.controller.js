@@ -83,7 +83,7 @@ module.exports = (app) => {
               pcat: {
                 "@id": "1",
                 description:
-                  "משהו https://stackoverflow.com משהו http://randomsite.com כדאי לקרוא.",
+                  "http://www.netflix.com/browse",
               },
             },
           });
@@ -107,9 +107,29 @@ module.exports = (app) => {
     if (validator.categoriesValidator(req)) {
       res.json(lehavaData.requestsCategories[req.query.WC.split("'")[1] - 1]);
     } else {
-      res.status(400).send({
-        error: "No WC parameter on GET request",
-      });
+      try {
+        if (req.query.WC.startsWith("id=1")) {
+          res.status(200).json({
+            collection_chgcat: {
+              chgcat: {
+                "@id": "1",
+                description:
+                  "http://www.netflix.com/browse",
+              },
+            },
+          });
+        } else {
+          res.status(200).json({
+            collection_pcat: {
+              "@COUNT": "0",
+            },
+          });
+        }
+      } catch (e) {
+        res.status(400).send({
+          error: "No WC parameter on GET request",
+        });
+      }
     }
   });
 

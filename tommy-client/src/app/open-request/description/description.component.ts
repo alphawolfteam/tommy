@@ -202,9 +202,9 @@ export class DescriptionComponent implements OnInit {
     return prefix.startsWith("5") || prefix.startsWith("05");
   }
 
-  openKnowlengeDialog() {
-    const dialogRef = this.knowledgeArticleDialog.open(
-      KnowledgeArticleComponent
+  openKnowlengeDialog(knowledgeArticleLink: string) {
+    this.knowledgeArticleDialog.open(
+      KnowledgeArticleComponent, {data: knowledgeArticleLink}
     );
   }
 
@@ -216,21 +216,23 @@ export class DescriptionComponent implements OnInit {
     if (!categoryId) {
       categoryId = this.postReqService.categoryId;
     }
-    this.apiGetService
-      .getCategoryDescription(categoryId)
-      .subscribe((res: any) => {
-        const knowledgeArticle = this.postReqService.isIncident
-          ? res.collection_pcat.pcat
-            ? res.collection_pcat.pcat.description
-            : null
-          : res.collection_chgcat.chgcat
-          ? res.collection_chgcat.chgcat.description
-          : null;
+    this.checkKnowledgeArticle(this.postReqService.isIncident, categoryId)
+  }
 
-        if (knowledgeArticle) {
-          this.openKnowlengeDialog();
-        }
-      });
+  checkKnowledgeArticle(isIncident: boolean, categoryId: string) {
+    if (isIncident) {
+      return this.apiGetService
+        .getIncidentCategoryDescription(categoryId)
+        .subscribe((res: any) => {
+          if(res.collection_pcat.pcat?.description) this.openKnowlengeDialog(res.collection_pcat.pcat.description);
+        });
+    } else {
+      return this.apiGetService
+        .getRequestCategoryDescription(categoryId)
+        .subscribe((res: any) => {
+          if (res.collection_chgcat.chgcat?.description) this.openKnowlengeDialog(res.collection_chgcat.chgcat?.description);
+        });
+    }
   }
 
   getPlaceId(placeName: string) {
