@@ -1,43 +1,40 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-  @font-face {
-    font-family: Rubik;
-    src: url(/../../../assets/Rubik-Medium.ttf);
-  }
+@font-face {
+  font-family: Rubik;
+  src: url(/../../../assets/Rubik-Medium.ttf);
+}
 
+#kara {
+  text-align: center;
+  font-family: Rubik;
+  left: 20vh;
+  margin-top: 8vh;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
 
-  #kara{
-    text-align: center;
-    font-family: Rubik;
-    left: 20vh;
-    margin-top: 8vh;
-    font-size: 1.5rem;
-    font-weight: normal;
-  }
+#loved {
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  font-size: 0.95rem;
+}
 
-  #loved{
-    text-align: center;
-    left: 20vh;
-    font-family: Rubik;
-    font-size: 0.95rem;
-  }
+.potrim {
+  text-align: center;
+  left: 20vh;
+  font-family: Rubik;
+  font-size: 2.8rem;
+  margin-top: 14vh;
+  margin-bottom: 1vh;
+  font-weight: 500;
+}
 
-  .potrim {
-    text-align: center;
-    left: 20vh;
-    font-family: Rubik;
-    font-size: 2.8rem;
-    margin-top: 14vh;
-    margin-bottom: 1vh;
-    font-weight: 500;
-  }
-
-
-  .search{
-    margin: auto;
-    width: fit-content;
-    margin-bottom: 20px;
-  }
-  
+.search {
+  margin: auto;
+  width: fit-content;
+  margin-bottom: 1.25rem;
+}

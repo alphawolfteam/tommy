@@ -1,47 +1,47 @@
 #home {
-    overflow: hidden;
-    height: 100%;
+  overflow: hidden;
+  height: 100%;
 }
 
 .flex-container {
-    align-items: center;
-    display: grid;
-    /* overflow: hidden; */
-    grid-template-areas: "a b c d e";
-    grid-template-columns: repeat(5, 1fr);
-    background-color: #f9fafb;
-    height: 100%;
+  align-items: center;
+  display: grid;
+  /* overflow: hidden; */
+  grid-template-areas: "a b c d e";
+  grid-template-columns: repeat(5, 1fr);
+  background-color: #f9fafb;
+  height: 100%;
 }
 
 .task-component {
-    grid-area: c;
+  grid-area: c;
 }
 
 .updating-component {
-    grid-area: a;
-    height: 100%;
-    background-color: #fff;
+  grid-area: a;
+  height: 100%;
+  background-color: #fff;
 }
 
 .chatImg {
-    width: 26px;
-    height: 26px;
+  width: 26px;
+  height: 26px;
 }
 
 #btnChat {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    background-color: #3f9c67;
-    z-index: 3;
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  background-color: #3f9c67;
+  z-index: 3;
 }
 
-@media (max-width:1300px) {
-    #btnChat {
-        display: none;
-    }
-    
-    #chatBox{
-        display: none;
-    }
+@media (max-width: 1300px) {
+  #btnChat {
+    display: none;
+  }
+
+  #chatBox {
+    display: none;
+  }
 }
