@@ -29,7 +29,7 @@ export class CardsListComponent implements OnInit {
   }
 
   getStyle(listItem) {
-    return listItem.length < 30 ? 'calc(100% + 0.5vw)' : '14px'
+    return listItem.length < 30 ? 'calc(100% + 0.5vw)' : '0.875rem'
   }
 
   ngDoCheck(): void {
