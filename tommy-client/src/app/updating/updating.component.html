@@ -1,19 +1,42 @@
- <div id="updatesContainer" class="bottom-fade">
+<div id="updatesContainer" class="bottom-fade">
   <h1 id="updatesHeadline">עדכונים</h1>
+  <ng-container *ngIf="noUpdatesFlag">
+    <h2 id="no-updates">אין עדכונים</h2>
+  </ng-container>
   <ng-container *ngIf="updatesArray">
     <cdk-virtual-scroll-viewport id="scrollBar" itemSize="250" class="viewport">
       <mat-list role="list">
-        <mat-list-item (click)="openBottomSheet(update)" role="listitem" *ngFor="let update of updatesArray" class="update-card">
+        <mat-list-item
+          (click)="openBottomSheet(update)"
+          role="listitem"
+          *ngFor="let update of updatesArray"
+          class="update-card"
+        >
           <span class="date" matLine>{{ update.open_date }}</span>
-          <p class="name" matLine *ngIf="update.z_network && update.z_impact_service">תקלה רוחבית בשירות "{{update.z_impact_service}}" ברשת ״{{update.z_network}}״ :</p>
-          <p class="name" matLine *ngIf="!update.z_network || !update.z_impact_service">תקלה רוחבית:</p>
-          <p class="name" matLine> "{{update.name }}</p>
+          <p
+            class="name"
+            matLine
+            *ngIf="update.z_network && update.z_impact_service"
+          >
+            תקלה רוחבית בשירות "{{ update.z_impact_service }}" ברשת ״{{
+              update.z_network
+            }}״ :
+          </p>
+          <p
+            class="name"
+            matLine
+            *ngIf="!update.z_network || !update.z_impact_service"
+          >
+            תקלה רוחבית:
+          </p>
+          <p class="name" matLine>"{{ update.name }}</p>
           <p class="name" matLine>{{ update.summary }}"</p>
         </mat-list-item>
       </mat-list>
     </cdk-virtual-scroll-viewport>
   </ng-container>
-  <ng-container #noUpdates>
+
+  <ng-container *ngIf="!noUpdatesFlag" #noUpdates>
     <div class="loader">
       <app-cardsloader></app-cardsloader>
     </div>
