@@ -8,19 +8,26 @@ span {
   min-width: 46rem;
   display: flex;
   flex-direction: row-reverse;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   position: absolute;
   box-shadow: 0 0.3rem 0.8rem 0 rgba(184, 184, 184, 0.3);
-  top: 0;
   z-index: 1;
+}
+
+#recContainer {
+  width: 100%;
+  height: 0.5vh;
+  /* min-width: 46rem; */
+  position: absolute;
+  top: 0;
+  z-index: 2;
 }
 
 #leftRec {
   width: 33%;
-  height: 0.5vh;
+  height: 100%;
   background-color: #227e2d;
   display: inline-block;
   position: absolute;
@@ -33,7 +40,7 @@ span {
   top: 0;
   left: 33%;
   width: 34%;
-  height: 0.5vh;
+  height: 100%;
   background-color: #afc514;
   display: inline-block;
 }
@@ -43,7 +50,7 @@ span {
   top: 0;
   left: 67%;
   width: 33%;
-  height: 0.5vh;
+  height: 100%;
   background-color: #2d9889;
   display: inline-block;
 }
@@ -52,14 +59,15 @@ span {
   width: 2rem;
   height: 2rem;
   margin-right: 2rem;
-  margin-left: 5rem;
+  margin-left: 3rem;
 }
 
 #tommy-logo {
   width: 11rem;
   height: 3.5rem;
   cursor: pointer;
-  margin: 0;
+  margin-right: 5rem;
+  margin-left: 1rem;
 }
 
 @font-face {
@@ -70,18 +78,17 @@ span {
 #username {
   font-family: rubik;
   font-size: 1rem;
-  width: 15rem;
+  width: 12rem;
+  text-align: center;
 }
 
 #sap-logo {
   height: 2.5rem;
-  left: 5rem;
   margin-right: 1rem;
 }
 
 #yeso-logo {
   height: 2.5rem;
-  left: auto 2rem;
   margin-right: 1rem;
   margin-left: 1rem;
 }
@@ -93,7 +100,7 @@ span {
 
 .flex-row-container {
   display: flex;
-  flex-direction: row-reverse;
+  direction: rtl;
   justify-content: center;
   align-items: center;
 }

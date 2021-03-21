@@ -1,9 +1,9 @@
+<div id="recContainer">
+  <div id="leftRec"></div>
+  <div id="midRec"></div>
+  <div id="rightRec"></div>
+</div>
 <div class="header-wrapper" *ngIf="userName">
-  <div id="recContainer">
-    <div id="leftRec"></div>
-    <div id="midRec"></div>
-    <div id="rightRec"></div>
-  </div>
   <img src="./assets/tommy-logo.svg" (click)="onHome()" id="tommy-logo" />
   <div class="flex-row-container">
     <span id="username">{{ greeting }}, {{ userName }} </span>
