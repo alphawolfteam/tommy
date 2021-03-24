@@ -1,10 +1,39 @@
 .cards-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
+  max-width: 81rem;
+  margin: auto;
+}
+
+@media only screen and (max-width: 80rem) {
+  .cards-container {
+    max-width: 61rem;
+  }
+}
+@media only screen and (max-width: 80rem) {
+  .cards-container {
+    max-width: 61rem;
+  }
+}
+@media only screen and (max-width: 60rem) {
+  .cards-container {
+    max-width: 41rem;
+  }
+}
+@media only screen and (max-width: 40rem) {
+  .cards-container {
+    max-width: 21rem;
+  }
+}
+
+.centering {
+  width: 100%;
+  align-items: center;
+  text-align: center;
 }
 
 .card {
