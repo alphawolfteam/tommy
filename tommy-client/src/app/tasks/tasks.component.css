@@ -70,6 +70,7 @@
 }
 
 .new-task-button #button-text {
+    width: 88px;
     height: 19px;
     font-family: Rubik;
     font-size: 16px;
@@ -216,13 +217,4 @@
     cursor: pointer;
     filter: none;
     opacity: 1;
-}
-.disabled {
-    background-color: #aeaeae;
-    direction: rtl;
-}
-.disabled:hover {
-    background-color: #aeaeae;
-    box-shadow: none;
-    cursor: context-menu;
 }

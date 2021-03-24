@@ -10,6 +10,7 @@ export class BottomUpdateDetailSheet implements OnInit {
   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomUpdateDetailSheet>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
   openLink(event: MouseEvent): void {

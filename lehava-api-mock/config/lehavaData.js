@@ -62,96 +62,6 @@ module.exports = {
             ]
         }
     },
-    all_locations: {
-        collection_loc: {
-            "@COUNT": "9",
-            "@START": "1",
-            "@TOTAL_COUNT": "9",
-            "loc": [
-            {
-                "@id": "U'1'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 1",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'2'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 2",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'3'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 3",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'4'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 4",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'5'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 5",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'6'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 6",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'7'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 7",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'8'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 8",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            },
-            {
-                "@id": "U'9'",
-                "@REL_ATTR": "U'1'",
-                "@COMMON_NAME": "בסיס 9",
-                "link": {
-                    "@href":"http://hgbliuglikuhlu",
-                    "@rel":"self"
-                }
-            }
-            ]
-        }
-    },
     services: [{
         collection_z_networks_to_service: {
             z_networks_to_service: [{
@@ -2197,14 +2107,9 @@ module.exports = {
         T: "t87471111",
         data: {
             collection_cnt: {
-                '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'1'",
-                    "@COMMON_NAME": "ביבי נתניהו",
-                    "organization": {
-                        "@id": "U'11",
-                        "@COMMON_NAME": "יחידה1"
-                    }
+                    "@COMMON_NAME": "ביבי נתניהו"
                 }
             }
         }
@@ -2213,14 +2118,9 @@ module.exports = {
         T: "t87471112",
         data: {
             collection_cnt: {
-                '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'2'",
-                    "@COMMON_NAME": "בני גנץ",
-                    "organization": {
-                        "@id": "U'23",
-                        "@COMMON_NAME": "יחידה3"
-                    }
+                    "@COMMON_NAME": "בני גנץ"
                 }
             }
         }
@@ -2229,14 +2129,9 @@ module.exports = {
         T: "t23458789",
         data: {
             collection_cnt: {
-                '@TOTAL_COUNT': '1',
                 cnt: {
                     "@id": "U'3'",
-                    "@COMMON_NAME": "איווט ליברמן",
-                    "organization": {
-                        "@id": "U'31",
-                        "@COMMON_NAME": "יחידה1"
-                    }
+                    "@COMMON_NAME": "איווט ליברמן"
                 }
             }
         }
@@ -2273,8 +2168,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     },
                     {
                         "@id": "1013352",
@@ -2301,7 +2195,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }, 
+                        }
                     }]
                 }
             },
@@ -2330,8 +2224,7 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     },
                     {
                         "@id": "1023351",
@@ -2356,7 +2249,7 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "0"
-                        }, 
+                        }
                     },
                     {
                         "@id": "1322251",
@@ -2415,8 +2308,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     },
                     {
                         "@id": "1013351",
@@ -2443,7 +2335,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
+                        }
                     },
                     {
                         "@id": "1013352",
@@ -2470,8 +2362,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     },
                     {
                         "@id": "1013353",
@@ -2498,7 +2389,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
+                        }
                     },
                     {
                         "@id": "1013354",
@@ -2525,8 +2416,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     },
                     {
                         "@id": "1013355",
@@ -2553,7 +2443,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
+                        }
                     },
                     {
                         "@id": "1013356",
@@ -2580,8 +2470,7 @@ module.exports = {
                         },
                         "active": {
                             "@REL_ATTR": "0"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     }
                     ]
                 }
@@ -2611,8 +2500,7 @@ module.exports = {
                         "type": "C",
                         "active": {
                             "@REL_ATTR": "1"
-                        }, 
-                        "z_last_transfer_date":1577822500,
+                        }
                     },
                     {
                         "@id": "1013362",
@@ -2775,16 +2663,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע REPORT על WH - ניתן VAC",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2793,16 +2678,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2811,16 +2693,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע REPORT על WH - ניתן VAC",
                 z_network: {
-                    "@COMMON_NAME": "רשת"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "service"
+                    "@COMMON_NAME": "עד הקצה"
                 }
             },
             {
@@ -2829,106 +2708,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "רשת"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "service"
-                }
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "רשת"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "service"
-                }
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "רשת"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "service"
-                }
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "רשת"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "service"
-                }
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
-                status: {
-                    "@COMMON_NAME": 'ממתין לטיפול'
-                },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_network: {
-                    "@COMMON_NAME": "רשת"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "service"
-                }
-            },
-            {
-                "@COMMON_NAME": '458525',
-                category: {
-                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
-                },
-                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2937,16 +2723,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2955,16 +2738,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2973,16 +2753,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -2991,16 +2768,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -3009,16 +2783,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -3027,16 +2798,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
                 z_network: {
                     "@COMMON_NAME": "עד הקצה"
-                },
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
                 }
             },
             {
@@ -3045,13 +2813,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                z_network: {
+                    "@COMMON_NAME": "עד הקצה"
                 }
             },
             {
@@ -3060,13 +2828,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                z_network: {
+                    "@COMMON_NAME": "עד הקצה"
                 }
             },
             {
@@ -3075,13 +2843,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                z_network: {
+                    "@COMMON_NAME": "עד הקצה"
                 }
             },
             {
@@ -3090,13 +2858,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                z_network: {
+                    "@COMMON_NAME": "עד הקצה"
                 }
             },
             {
@@ -3105,13 +2873,13 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
                 summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
+                z_network: {
+                    "@COMMON_NAME": "עד הקצה"
                 }
             },
             {
@@ -3120,14 +2888,11 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
-                }
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3135,14 +2900,11 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
-                }
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
             },
             {
                 "@COMMON_NAME": '458525',
@@ -3150,14 +2912,71 @@ module.exports = {
                     "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
                 },
                 description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
-                open_date: 1624563000,
+                open_date: 1592978575,
                 status: {
                     "@COMMON_NAME": 'ממתין לטיפול'
                 },
-                summary: "בוצע COOLDOWN לשרתי SILVER ELITE",
-                z_impact_service: {
-                    "@COMMON_NAME": "מערכות הפעלה"
-                }
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
+            },
+            {
+                "@COMMON_NAME": '458525',
+                category: {
+                    "@COMMON_NAME": ".הפעלת חסימת התקני רשת לצורך שדרוג"
+                },
+                description: ".החסימה תכנס לתוקף בעוד כ-3 שעות",
+                open_date: 1592978575,
+                status: {
+                    "@COMMON_NAME": 'ממתין לטיפול'
+                },
+                summary: "בוצע COOLDOWN לשרתי SILVER ELITE"
             }
             ]
         }
@@ -3304,74 +3123,34 @@ module.exports = {
             cnt: [{
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "באלשוי, ויטה ",
-                "userid": "M70220177",
-                "organization": {
-                    "@id": "U'15",
-                    "@COMMON_NAME": "יחידה1"
-                }
+                "userid": "M70220177"
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "עבט, רון ",
-                "userid": "M70220177",
-                "organization": {
-                    "@id": "U'51",
-                    "@COMMON_NAME": "יחידה1"
-                }
+                "userid": "M70220177"
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "באלטון, חוד ",
-                "userid": "M70220177",
-                "organization": {
-                    "@id": "U'61",
-                    "@COMMON_NAME": "יחידה2"
-                }
+                "userid": "M70220177"
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "יותם, סויסה ",
-                "userid": "M70220177",
-                "organization": {
-                    "@id": "U'18",
-                    "@COMMON_NAME": "יחידה3"
-                }
+                "userid": "M70220177"
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "ליברמן, גבר ",
-                "userid": "M70220177",
-                "organization": {
-                    "@id": "U'165",
-                    "@COMMON_NAME": "יחידה8"
-                }
+                "userid": "M70220177"
             },
             {
                 "@id": "U'40654A5604SADDC03654'",
                 "@COMMON_NAME": "מיקי, מוטי ",
-                "userid": "M70220177",
-                "organization": {
-                    "@id": "U'23",
-                    "@COMMON_NAME": "יחידה15"
-                }
+                "userid": "M70220177"
             },
             ]
-        }
-    },
-    organizations:{
-        "collection_org":{
-            "@COUNT": "0",
-            "@START": "0",
-            "@TOTAL_COUNT": "0",
-            "org":{
-            "@id": "1",
-            "@REL_ATTR": "1",
-            "@COMMON_NAME": "1",
-            "z_location":{
-                '@id': "U'1",
-                '@COMMON_NAME':'בסיס99'
-            }
-        }
         }
     }
 

@@ -21,12 +21,14 @@ export class AuthService {
 
   login() {
     this.http.get(`/user`, { withCredentials: true }).subscribe((res: any) => {
+      console.log(res);
       this.user = res;
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
       this.phone = res.phoneNumbers;
       this.api.getUUID(this.userT).subscribe((res: any) => {
         this.userUUID = res.collection_cnt.cnt['@id'];
+        console.log(this.userUUID);
       });
     });
   }
@@ -37,6 +39,7 @@ export class AuthService {
 
   public setUUID(uuid) {
     this.userUUID = uuid;
+    console.log("uuid", this.userUUID);
   }
 
   public getUser() {

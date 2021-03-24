@@ -152,4 +152,3 @@ config.prod.ts
 
 /scripts/devElk-compose/data01
 /logs
-/exports

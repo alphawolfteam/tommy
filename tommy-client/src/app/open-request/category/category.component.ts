@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from './category.service'
 import { PostReqService } from '../post-req.service';
-import { LehavaDataService } from 'src/app/lehava-data.service';
 
 
 @Component({
@@ -19,15 +18,14 @@ export class CategoryComponent implements OnInit {
     public categoryService: CategoryService,
     public route: ActivatedRoute,
     private router: Router,
-    public postReqService: PostReqService,
-    public lehavaDataService: LehavaDataService,
-  ) { }
+    public postReqService: PostReqService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.categoryService.setCategories(this.postReqService.networkId, id);
-    this.filterCategories = this.categoryService.categoriesToDisplay;
-    this.categoriesLoaded = true;
+    this.categoryService.setCategories(id).then(() => {
+      this.filterCategories = this.categoryService.categoriesToDisplay;
+      this.categoriesLoaded = true;
+    });
     this.categoryService.emptySelectedCategory();
   }
 

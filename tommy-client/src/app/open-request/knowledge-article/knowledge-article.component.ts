@@ -1,25 +1,48 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from "@angular/core";
+import { PostReqService } from "../post-req.service";
+import { ApigetService } from "../../apiget.service";
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: "app-knowledge-article",
   templateUrl: "./knowledge-article.component.html",
   styleUrls: ["./knowledge-article.component.css"],
 })
-export class KnowledgeArticleComponent implements OnInit{
+export class KnowledgeArticleComponent implements OnInit {
+  knowledgeArticle: string[] = [];
+  knowledgeLink: string[] = [];
+
   constructor(
     private router: Router,
-    public dialogRef: MatDialogRef<KnowledgeArticleComponent>,
-    @Inject(MAT_DIALOG_DATA) public knowledgeLink: string
+    private postReqService: PostReqService,
+    private apiGetService: ApigetService,
+    public dialogRef: MatDialogRef<KnowledgeArticleComponent>
   ) { }
-  
+
   ngOnInit(): void {
-    console.log(this.knowledgeLink);
+    let categoryId: string;
+    categoryId = this.postReqService.isIncident
+      ? this.postReqService.categoryId.split(":")[1]
+      : this.postReqService.categoryId;
+    if (!categoryId) {
+      categoryId = this.postReqService.categoryId;
+    }
+    this.apiGetService
+      .getCategoryDescription(categoryId)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.knowledgeArticle = res.collection_pcat.pcat
+          ? res.collection_pcat.pcat.description.split(' ')
+          : null;
+      });
   }
 
   getKnowledgeLink() {
-    return this.knowledgeLink;
+    this.knowledgeLink = this.knowledgeArticle.filter((article: string) => article.startsWith("http"));
+    return this.knowledgeLink[0];
+
   }
 
   closeDialog() {

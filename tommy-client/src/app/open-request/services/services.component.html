@@ -9,21 +9,9 @@
   </div>
 </div>
 
-<app-cards-list
-  *ngIf="!searchText; else categoriesCardsList"
-  [cardsList]="getServicesNames()"
-  (selected)="onSelectedService($event)"
->
+<app-cards-list *ngIf="services; else cardsloader" [cardsList]="getServicesNames()"
+  (selected)="onSelectedService($event)">
 </app-cards-list>
-
-<ng-template #categoriesCardsList>
-  <app-cards-list-categories
-    [servicesWithCategories]="servicesWithCategoriesToDisplay"
-    (selected)="onSelectedServiceWithCategory($event)"
-  >
-  </app-cards-list-categories>
-</ng-template>
-
-<!-- <ng-template #cardsloader>
+<ng-template #cardsloader>
   <app-cardsloader></app-cardsloader>
-</ng-template> -->
+</ng-template>

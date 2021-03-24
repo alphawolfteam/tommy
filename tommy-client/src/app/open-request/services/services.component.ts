@@ -2,41 +2,39 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApigetService, model1 } from "../../apiget.service";
 import { PostReqService } from "../post-req.service";
-import { LehavaDataService, Service, Network, ServiceWithCategory } from 'src/app/lehava-data.service';
-import { CategoryService } from "../category/category.service";
-
 
 @Component({
   selector: "app-services",
   templateUrl: "./services.component.html",
   styleUrls: ["./services.component.css"],
 })
-
-
-
 export class ServicesComponent implements OnInit {
-  services: Service[];
-  servicesToDisplay: Service[];
-  servicesWithCategories: ServiceWithCategory[];
-  servicesWithCategoriesToDisplay: ServiceWithCategory[];
+  services: model1[];
   searchText: string = "";
+  filterServices: model1[];
 
   constructor(
     public aPIgetService: ApigetService,
     public route: ActivatedRoute,
     private router: Router,
-    public postReqService: PostReqService,
-    public lehavaDataService: LehavaDataService,
-    public categoryService: CategoryService,
-  ) { }
+    public postReqService: PostReqService
+  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get("id");
-    this.services = this.lehavaDataService.getServicesOfNetwork(id);
-    this.servicesToDisplay = this.services;
-    this.servicesWithCategories = this.lehavaDataService.getServicesWithCategories(id);
-    this.servicesWithCategoriesToDisplay = this.servicesWithCategories;
-
+    this.aPIgetService.getServices(id).subscribe((res: any) => {
+      this.services = [];
+      let servicesResponse =
+      res.collection_z_networks_to_service.z_networks_to_service;
+      servicesResponse.forEach((element: any) => {
+        const serviceObject = element.service;
+        this.services.push({
+          id: serviceObject["@id"],
+          value: serviceObject["@COMMON_NAME"],
+        } as model1);
+        this.filterServices = this.services;
+      });
+    });
   }
 
   onReturn() {
@@ -45,23 +43,16 @@ export class ServicesComponent implements OnInit {
 
   onSelectedService(serviceName: string) {
     const serviceSelected = this.services.find((service) => {
-      return service.serviceName == serviceName;
+      return service.value == serviceName;
     });
-    this.postReqService.serviceId = serviceSelected.serviceId;
-    this.router.navigate(["/categories", serviceSelected.serviceId], {
+    this.postReqService.serviceId = serviceSelected.id;
+    this.router.navigate(["/categories", serviceSelected.id], {
       relativeTo: this.route,
     });
   }
 
-  onSelectedServiceWithCategory(serviceWithCategory: ServiceWithCategory) {
-    this.postReqService.serviceId = serviceWithCategory.serviceId;
-    this.categoryService.setCategories(this.postReqService.networkId, serviceWithCategory.serviceId);
-    this.categoryService.setSelectedCategories(serviceWithCategory.category.name);
-    this.categoryService.openTrandverseIncidentDialog();
-  }
-
   getServicesNames() {
-    return this.servicesToDisplay.map(service => service.serviceName);
+    return this.filterServices.map(service => service.value);
   }
 
   searchTextChanged(text: string) {
@@ -70,9 +61,10 @@ export class ServicesComponent implements OnInit {
   }
 
   addServiceToDisplay() {
-    this.servicesWithCategoriesToDisplay = this.servicesWithCategories.filter((service: ServiceWithCategory) => {
-      return service.serviceName.toLowerCase().includes(this.searchText) || service.category.name.toLowerCase().includes(this.searchText);
+    this.filterServices = this.services.filter((service: model1) => {
+      return service.value.toLowerCase().includes(this.searchText);
     });
+    console.log(this.filterServices);
   }
 
   stripWhiteSpaces(str) {

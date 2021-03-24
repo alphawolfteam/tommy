@@ -12,6 +12,7 @@ export class TaskDetailDialog implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public task: any) { }
 
   ngOnInit(): void {
+    console.log(this.task);
   }
 
   getDesc(): string {
@@ -43,15 +44,6 @@ export class TaskDetailDialog implements OnInit {
     const taskService = this.task.service;
     if (taskService && taskService !== null) {
       return `שירות: ${taskService}`;
-    }
-    return false;
-  }
-
-  getLastTransferDate(): string | boolean {
-    const lastTransferDate = this.task.lastTransferDate;
-    if (lastTransferDate && lastTransferDate !== null) {
-      
-      return `תאריך עדכון אחרון: ${lastTransferDate}`;
     }
     return false;
   }

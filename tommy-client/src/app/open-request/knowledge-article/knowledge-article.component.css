@@ -9,7 +9,7 @@
   border: solid 1px #ebebeb;
   background-color: #ffffff;
   transition: 0.5s;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-family: rubik-light;
   line-height: 1.43;
   text-align: right;
@@ -73,12 +73,11 @@
   background-color: #3f9c67;
 }
 
-.openRequestButton {
-  margin-left: 10px;
-  color: #3f9c67 !important;
-  background: #fff;
-  background-color: #fff;
-  border: solid 1px #3f9c67;
+.cancelButton {
+  margin-right: 10px;
+  color: red;
+  border: solid 1px red;
+  opacity: 0.5;
 }
 
 .button-Link {
@@ -87,12 +86,12 @@
   align-items: center;
 }
 
-.homeButton { 
-  margin-right: 10px;
-  color: red;
-  border: solid 1px red;
-  opacity: 0.5;
-
+.homeButton {
+  margin-left: 10px;
+  color: #3f9c67 !important;
+  background: #fff;
+  background-color: #fff;
+  border: solid 1px #3f9c67;
 }
 
 .close-button {

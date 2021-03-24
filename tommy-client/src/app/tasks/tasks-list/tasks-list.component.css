@@ -19,6 +19,7 @@
   right: 80px;
 }
 
+
 .task-id {
   float: left;
   position: relative;
@@ -34,8 +35,8 @@
   right: 136px;
   font-family: rubik;
   font-size: 14px;
-  color: rgba(59, 59, 59, 0.65);
-  top: 60px;
+  color: rgba(59, 59, 59, .65);
+  top: 50px;
 }
 
 .StatusImg {
@@ -52,8 +53,8 @@
   opacity: 0.5;
   height: 20px;
 }
-
-.cancelImg:hover {
+  
+.cancelImg:hover{
   opacity: 1;
 }
 
@@ -114,21 +115,11 @@
   opacity: 0.5;
 }
 
-.chatImg:hover {
+.chatImg:hover{
   opacity: 1;
 }
 
 .background {
   height: 100%;
   width: 100%;
-}
-
-.team-title{
-  right: 135px;
-  position: absolute;
-  top: 37px;
-  font-family: rubik;
-  color: #3b3b3b;
-  direction: rtl;
-  font-size: 13px;
 }
