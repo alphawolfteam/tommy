@@ -1,12 +1,21 @@
+<div id="recContainer">
+  <div id="leftRec"></div>
+  <div id="midRec"></div>
+  <div id="rightRec"></div>
+</div>
 <div class="header-wrapper" *ngIf="userName">
-    <div id="recContainer">
-        <div id="leftRec"></div>
-        <div id="midRec"></div>
-        <div id="rightRec"></div>
-    </div>
-    <img src="./assets/tommy-logo.svg" (click)="onHome()" id="tommy-logo">
+  <img src="./assets/tommy-logo.svg" (click)="onHome()" id="tommy-logo" />
+  <div class="flex-row-container">
     <span id="username">{{ greeting }}, {{ userName }} </span>
-    <img src="./assets/one-logo.svg" id="one-logo">
-    <img src="./assets/sapir.png" id="sap-logo">
-    <img src="./assets/yesodot.png" id="yeso-logo">
+    <img src="./assets/one-logo.svg" id="one-logo" />
+  </div>
+  <div class="flex-row-container">
+    <img
+      src="./assets/info.png"
+      id="info-logo"
+      (click)="redirectToTutorial()"
+    />
+    <img src="./assets/sapir.png" id="sap-logo" />
+    <img src="./assets/yesodot.png" id="yeso-logo" />
+  </div>
 </div>

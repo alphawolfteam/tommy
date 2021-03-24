@@ -5,6 +5,7 @@ import { ApigetService, taskModel1 } from "../apiget.service";
 import { AuthService } from "../auth.service";
 import { EventEmiterService } from "../event.emmiter.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LehavaDataService } from '../lehava-data.service';
 import * as moment from "moment";
 
 export interface Pnia {
@@ -35,7 +36,8 @@ export class TasksComponent implements OnInit {
     public _eventEmmitter: EventEmiterService,
     public authService: AuthService,
     public taskDetailDialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public lehavaDataService: LehavaDataService
   ) { }
 
   ngOnInit() {
@@ -55,8 +57,9 @@ export class TasksComponent implements OnInit {
   jsonParser(taskObject) {
     if (taskObject) {
       const formatted_date = moment(taskObject.open_date * 1000).format(
-        "hh:mm DD.MM.YYYY"
+        "HH:mm DD.MM.YYYY"
       );
+      const formatted_transfer_date =taskObject.z_last_transfer_date ? moment(taskObject.z_last_transfer_date * 1000).format("HH:mm DD.MM.YYYY"): null;
       return {
         serial_id: taskObject ? taskObject["@id"] : false,
         id: taskObject ? taskObject["@COMMON_NAME"] : false,
@@ -71,7 +74,8 @@ export class TasksComponent implements OnInit {
         icon: `../../assets/${String(taskObject.status["@COMMON_NAME"]).replace('\\', '-')}.svg`,
         link: taskObject.web_url ? taskObject.web_url : "",
         type: taskObject ? taskObject.type : "",
-        statusCode: taskObject ? taskObject.status['@REL_ATTR'] : ""
+        statusCode: taskObject ? taskObject.status['@REL_ATTR'] : "",
+        lastTransferDate: formatted_transfer_date || false
       } as taskModel1;
     } else {
       return false;
@@ -103,7 +107,7 @@ export class TasksComponent implements OnInit {
     this.openTasksFlag
       ? this.addTasksToDisplay(this.openTasksArr)
       : this.addTasksToDisplay(this.closedTasksArr);
-  }  
+  }
 
   addTasksToDisplay(tasksArray: taskModel1[]) {
     this.displayedTasks = tasksArray.filter((task: taskModel1) => {
@@ -121,7 +125,7 @@ export class TasksComponent implements OnInit {
 
   async refresh() {
     await this.setTasks();
-    this.openSnackBar("בוצע רענון!", "")
+    this.openSnackBar("בוצע רענון", "")
   }
 
   openSnackBar(message: string, action: string) {

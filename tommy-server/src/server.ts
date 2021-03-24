@@ -1,4 +1,4 @@
-import express , { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import http from "http";
 import bodyParser from "body-parser";
 import helmet from "helmet";
@@ -6,7 +6,8 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import { config } from "./config";
 import { LehavaRouter } from "./lehava.router";
-import { HichatRouter } from "./hichat.router";
+import HichatRouter from './hichat/hichat.router'
+import LehavaDataRouter from "./lehava-data/lehavaData.router";
 import {
   userErrorHandler,
   serverErrorHandler,
@@ -24,7 +25,7 @@ import { logger } from "./utils/logger-client";
 import axios from "axios";
 import amqp from "amqplib/callback_api";
 import { AccessTokenProvider } from "./access-token/access-token-service";
-import {healthCheck} from './utils/middlewares/health'
+import { healthCheck } from './utils/middlewares/health'
 
 export class Server {
   public app: express.Application;
@@ -57,8 +58,10 @@ export class Server {
       });
       next();
     });
+    this.app.get("/openconf", AuthenticationMiddleware.requireAuth, (_req: express.Request, res: express.Response) => res.json(config.openConf));
     this.app.use("/api", AuthenticationMiddleware.requireAuth, LehavaRouter);
     this.app.use("/hichat", AuthenticationMiddleware.requireAuth, HichatRouter);
+    this.app.use("/lehavadata", AuthenticationMiddleware.requireAuth, LehavaDataRouter);
     this.initializeErrorHandler();
     this.app.get(
       "/user",
@@ -78,8 +81,7 @@ export class Server {
     this.server.listen(config.server.port, () => {
       logger({
         message:
-          `Server running in ${
-          process.env.NODE_ENV || "development"
+          `Server running in ${process.env.NODE_ENV || "development"
           } environment on port ${config.server.port}`
       });
     });
@@ -101,10 +103,10 @@ export class Server {
     });
 
 
-    this.app.get('/health', ( req: Request, res: Response,next: NextFunction)=>{
+    this.app.get('/health', (req: Request, res: Response, next: NextFunction) => {
       console.log('health check')
       healthCheck(req, res, next, redisClient, AccessTokenProvider)
-    } )
+    })
 
     this.app.use(cors());
 

@@ -6,6 +6,7 @@ import { IpMiddleware } from "./utils/middlewares/ip-middleware";
 import { config } from "./config";
 import { logger } from "./utils/logger-client";
 import MetadataCache from './metadata-cache/metadataCache'
+import HichatManager from "./hichat/hichat.manager";
 
 const LehavaRouter: Router = Router();
 

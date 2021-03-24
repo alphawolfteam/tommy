@@ -12,11 +12,13 @@
   <textarea id="subject" (input)="counter()" maxlength="500"
     placeholder="תיאור הפניה"></textarea>
   <p id="charCounter">{{ input }}/500</p>
-   <div *ngIf="!file" class="filesCircle" matTooltip="צרף קובץ">
+   <div *ngIf="!file" class="addFile">
+    <div class="filesCircle" matTooltip="צרף קובץ">
     <svg id="file-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
       <path fill="none" fill-rule="evenodd" stroke="#696969" stroke-linecap="round" stroke-linejoin="round" d="M1.122 7.505L6.204 2.21c1.557-1.613 4.073-1.613 5.629 0h0C12.58 2.988 13 4.042 13 5.142c0 1.1-.42 2.155-1.167 2.932l-5.718 5.957c-1.24 1.292-3.25 1.292-4.49 0h0c-.4-.416-.625-.98-.625-1.568 0-.589.225-1.153.624-1.57l4.377-4.56c.25-.268.594-.42.953-.42.36 0 .703.152.953.42h0c.258.261.403.62.403.994s-.145.732-.403.992l-3.018 3.144"/>
     </svg>
-    <input id="files" type="file" (change)="handleFileUpload($event)">
+    <input id="files" type="file" title=" " (change)="handleFileUpload($event)">
+    </div>
   </div>
   <div *ngIf="file">
     <button class="removeButton" (click)="handleRemoveFile()" matTooltip="{{file.name}}">הסר קובץ</button>
@@ -32,9 +34,21 @@
   </div>
   <input type="text" class="input {{ computerNameWarning }}" placeholder="שם המחשב (חובה)" maxlength="20"
     (input)="setComputerNameInput($event.target.value)">
-  <input type="text" class="input {{ locationWarning }}" placeholder="מיקום גיאוגרפי (חובה)" maxlength="40"
+  <input type="text" class="input {{ locationWarning }}" placeholder="מיקום ספציפי (חובה)" maxlength="40"
     (input)="setLocationInput($event.target.value)">
 </div>
+
+<div id="places-div" *ngIf="placesList.length > 0; else loader">
+  <select name="places" id="places" (change)="setPlace($event.target.value)" value="place">
+    <option class="place" *ngFor="let place of placesList" value="{{place.value}}" >{{place.value}}</option>
+  </select>
+</div>
+<div id="loader-div">
+<ng-template #loader>
+  <app-cardsloader class="loader"></app-cardsloader>
+</ng-template>
+</div>
+
 
 <div class="button_cont" (click)="sendPost()" id="taskOpenBtn" align="center">
   <button class="example_b" [disabled]="isPending">פתיחת פניה</button>

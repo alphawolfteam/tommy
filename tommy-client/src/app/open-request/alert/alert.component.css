@@ -1,0 +1,73 @@
+::ng-deep .dialog-container {
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.flex-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.finish-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 46px;
+    border-radius: 23px;
+    background-color: #3f9c67;
+    cursor: pointer;
+}
+
+.finish-button-container #finish-text{
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+.finish-button-container:hover {
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+    font-family: Rubik;
+  }
+
+#title {
+  width: 310px;
+  height: 20px;
+  font-family: Rubik;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3b3b3b;
+  margin-bottom: 10px;
+}
+
+#content {
+  width: 310px;
+  height: 20px;
+  font-family: Rubik;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3b3b3b;
+  margin-bottom: 40px;
+}
+
+

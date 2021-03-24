@@ -10,7 +10,6 @@ mat-list-item {
   cursor: context-menu;
 }
 
-
 @font-face {
   font-family: Rubik;
   src: url(/../../assets/Rubik-Medium.ttf);
@@ -38,7 +37,7 @@ mat-list-item {
 }
 
 .time {
-  font-family: 'Rubik';
+  font-family: "Rubik";
   font-size: 10px;
   font-weight: 300;
   font-stretch: normal;
@@ -49,7 +48,7 @@ mat-list-item {
   color: #696969;
 }
 
-.date{
+.date {
   font-size: 8px;
   font-weight: bold;
   font-stretch: normal;
@@ -61,9 +60,8 @@ mat-list-item {
   font-family: Rubik-Light;
 }
 
-
-.name{
-  font-size: 14px;
+.name {
+  font-size: 0.875rem;
   font-weight: 300;
   font-family: rubik-regular;
   line-height: 1.43;
@@ -109,10 +107,14 @@ mat-list-item {
   position: absolute;
   bottom: 0px;
   width: 460px;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 100%
+  );
 }
 
-.loader{
+.loader {
   margin-top: 60%;
 }
 
@@ -140,9 +142,22 @@ mat-list {
   bottom: 0;
   left: 0;
   pointer-events: none;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-  
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 100%
+  );
+
   /* background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255, 1) 90%); */
   width: 460px;
   height: 200px;
+}
+
+#no-updates {
+  text-align: center;
+  font-family: Rubik;
+  color: #80808061;
+  margin-top: 50px;
+  font-size: 25px;
+  cursor: context-menu;
 }

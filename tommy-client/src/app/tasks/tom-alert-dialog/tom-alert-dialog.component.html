@@ -1,0 +1,14 @@
+<div id="root">
+  <h1 mat-dialog-title dir="rtl">שים לב !</h1>
+  <div mat-dialog-content>
+    <p>התמיכה נעשית בצאט מול מרכז תום.</p>
+    <p>במידה ואינך נתמך ע"י מרכז זה, יש ליצור קשר עם המרכז הרלוונטי אליך.</p>
+  </div>
+  <mat-checkbox #c class="try" (change)="dontShowAgain(c.checked)"
+    >אל תציג הודעה זו שוב</mat-checkbox
+  >
+  <div mat-dialog-actions class="action-buttons">
+    <button mat-button id="continue-btn" (click)="continueClick()">המשך</button>
+    <button mat-button id="cancel-btn" (click)="cancelClick()">ביטול</button>
+  </div>
+</div>

@@ -11,7 +11,7 @@ services:
       - 8050:8050
 
   tommy-server:
-    image: tommy-server
+    image: tommy-server:deep-search
     container_name: tommy-server
     build:
       context: ../../tommy-server
@@ -23,7 +23,7 @@ services:
       PORT: 80
       SHRAGA_URL: http://13.79.7.3
       CLIENT_URL: http://client-nginx:3000
-      REDIS_URL: 'redis://redis:6379'
+      REDIS_URL: "redis://redis:6379"
       RABBITMQ_URL: "amqp://rabbitmq:5672"
       LEHAVA_API_SERVER_NAME: "lehava-api-mock"
       LEHAVA_API_HOST: "lehava-api-mock"
@@ -37,6 +37,7 @@ services:
       LOGIN_USER: tommy
       LOGIN_PASS: Aa123456
       SUPPORT_USERS: "t1010101@aman,t11223344@aman,t12312300@aman"
+      HOMEPAGE_TUTORIAL_VIDEO_URL: "https://youtube.com"
     ports:
       - 80:80
     depends_on:
@@ -44,15 +45,15 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-  
+
   redis:
-    container_name: 'redis'
-    image: 'redis:alpine'
+    container_name: "redis"
+    image: "redis:alpine"
     ports:
-      - '6379:6379'
+      - "6379:6379"
 
   rabbitmq:
-    container_name: 'rabbitmq'
+    container_name: "rabbitmq"
     build:
       context: ../
       dockerfile: rabbitmq.Dockerfile
@@ -65,7 +66,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 15
-    
+
   access-token-service:
     image: "access-token-service"
     container_name: "access-token-service"
@@ -75,7 +76,7 @@ services:
     environment:
       NODE_ENV: production
       RABBITMQ_URL: "amqp://rabbitmq:5672"
-      REDIS_URL: 'redis://redis:6379'
+      REDIS_URL: "redis://redis:6379"
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -94,7 +95,7 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-  
+
   # client-builder:
   #   container_name: client-builder
   #   image: trion/ng-cli:10.0.5

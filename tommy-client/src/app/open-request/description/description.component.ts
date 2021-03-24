@@ -7,7 +7,11 @@ import { PostReqService, PostResponse } from "../post-req.service";
 import { CategoryService } from "../category/category.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FinishRequestComponent } from "../finish-request/finish-request.component";
+import { AlertComponent } from "../alert/alert.component";
 import { KnowledgeArticleComponent } from "../knowledge-article/knowledge-article.component";
+import { config } from "../../../environments/config.dev";
+import { SpecPlaceService } from "../../spec-place.service";
+
 @Component({
   selector: "app-description",
   templateUrl: "./description.component.html",
@@ -19,6 +23,9 @@ export class DescriptionComponent implements OnInit {
   computerNameWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
+  placesList: model1[] = [];
+  initialPlace: model1 = { id: "", value: "" };
+  place: string = "";
   voip: string = "";
   computerNameInput: string = "";
   services: model1[];
@@ -27,6 +34,7 @@ export class DescriptionComponent implements OnInit {
   input: number = 0;
   isPending: boolean = false;
   file: { name: string; type: string; base64: string } = undefined;
+  organizationUUID: string;
 
   constructor(
     private router: Router,
@@ -37,7 +45,8 @@ export class DescriptionComponent implements OnInit {
     public categoryService: CategoryService,
     public dialog: MatDialog,
     public knowledgeArticleDialog: MatDialog,
-    private apiGetService: ApigetService
+    private apiGetService: ApigetService,
+    private specPlaceService: SpecPlaceService
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +57,15 @@ export class DescriptionComponent implements OnInit {
     this._eventEmmitter.user.subscribe((data) =>
       this.authService.setUserShraga(data)
     );
-    if (this.authService.getPhone()) this.setPhoneFromShraga(this.authService.getPhone());
-    this._eventEmmitter.dataStr.subscribe((data) => (this.userUUID = data));
+    this.userUUID = this.authService.getUuid();
+    if (this.authService.getPhone())
+      this.setPhoneFromShraga(this.authService.getPhone());
+    this._eventEmmitter.dataStr.subscribe((data) => {
+      this.userUUID = data;
+    });
+    this.place = this.specPlaceService.specPlace.value;
+    this.updatePlaces();
     this.isPending = false;
-    console.log(this.postReqService.categoryId);
   }
 
   onReturn() {
@@ -60,17 +74,33 @@ export class DescriptionComponent implements OnInit {
     });
   }
 
+  getFileSizeLimit() {
+    return config.fileSizeLimit;
+  }
+
   handleFileUpload(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.file = {
-        name: file.name,
-        type: file.name.split(".")[1],
-        base64: (reader.result as string).split(",")[1],
+    if (file.size > this.getFileSizeLimit()) {
+      document.getElementById("files")["value"] = "";
+      this.dialog.open(AlertComponent, {
+        width: "330px",
+        height: "225px",
+        data: {
+          title: "הקובץ שנבחר גדול מדי",
+          content: `${this.getFileSizeLimit() / 1048576}  MB הגבלת הגודל היא`,
+        },
+      });
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.file = {
+          name: file.name,
+          type: file.name.split(".")[1],
+          base64: (reader.result as string).split(",")[1],
+        };
       };
-    };
+    }
   }
 
   handleRemoveFile() {
@@ -82,6 +112,7 @@ export class DescriptionComponent implements OnInit {
       this.locationInput &&
       this.phoneInput &&
       this.computerNameInput &&
+      this.place &&
       !this.isPending
     ) {
       this.isPending = true;
@@ -89,11 +120,12 @@ export class DescriptionComponent implements OnInit {
         document.getElementById("subject")
       )).value;
       this.postReqService.location = this.locationInput;
-      console.log(this.phoneInput);
       this.postReqService.phoneNumber = this.phoneInput;
       this.postReqService.computerName = this.computerNameInput;
       this.postReqService.voip = this.voip;
       this.postReqService.file = this.file;
+      this.postReqService.z_location =
+        this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
             .postWithFileAppeal()
@@ -110,7 +142,6 @@ export class DescriptionComponent implements OnInit {
 
   private finishRequestDialog(res: PostResponse) {
     const requestId = this.postReqService.getRequestId(res);
-    console.log(`request id: ${requestId}`);
     this.dialog
       .open(FinishRequestComponent, {
         width: "430px",
@@ -145,6 +176,10 @@ export class DescriptionComponent implements OnInit {
     this.locationInput = location;
   }
 
+  setPlace(newPlace: string) {
+    this.place = newPlace;
+  }
+
   inputPlaceholderChanger() {
     this.locationWarning = !this.locationInput ? "red-holder" : "";
     this.phoneWarning = !this.phoneInput ? "red-holder" : "";
@@ -167,9 +202,9 @@ export class DescriptionComponent implements OnInit {
     return prefix.startsWith("5") || prefix.startsWith("05");
   }
 
-  openKnowlengeDialog() {
-    const dialogRef = this.knowledgeArticleDialog.open(
-      KnowledgeArticleComponent
+  openKnowlengeDialog(knowledgeArticleLink: string) {
+    this.knowledgeArticleDialog.open(
+      KnowledgeArticleComponent, {data: knowledgeArticleLink}
     );
   }
 
@@ -181,16 +216,42 @@ export class DescriptionComponent implements OnInit {
     if (!categoryId) {
       categoryId = this.postReqService.categoryId;
     }
-    this.apiGetService
-      .getCategoryDescription(categoryId)
-      .subscribe((res: any) => {
-        const knowledgeArticle = res.collection_pcat.pcat
-          ? res.collection_pcat.pcat.description
-          : null;
+    this.checkKnowledgeArticle(this.postReqService.isIncident, categoryId)
+  }
 
-        if (knowledgeArticle) {
-          this.openKnowlengeDialog();
-        }
-      });
+  checkKnowledgeArticle(isIncident: boolean, categoryId: string) {
+    if (isIncident) {
+      return this.apiGetService
+        .getIncidentCategoryDescription(categoryId)
+        .subscribe((res: any) => {
+          if(res.collection_pcat.pcat?.description) this.openKnowlengeDialog(res.collection_pcat.pcat.description);
+        });
+    } else {
+      return this.apiGetService
+        .getRequestCategoryDescription(categoryId)
+        .subscribe((res: any) => {
+          if (res.collection_chgcat.chgcat?.description) this.openKnowlengeDialog(res.collection_chgcat.chgcat?.description);
+        });
+    }
+  }
+
+  getPlaceId(placeName: string) {
+    const placeSelected = this.placesList.find((place) => {
+      return place?.value === placeName;
+    });
+    return placeSelected.id;
+  }
+
+  updatePlaces() {
+    this.placesList = this.specPlaceService.placesList
+      ? this.specPlaceService.placesList
+      : [];
+    this.initialPlace = {
+      id: this.specPlaceService.specPlace.id,
+      value: this.specPlaceService.specPlace.value,
+    };
+    this.initialPlace.value
+      ? (this.place = this.initialPlace.value)
+      : (this.place = "");
   }
 }

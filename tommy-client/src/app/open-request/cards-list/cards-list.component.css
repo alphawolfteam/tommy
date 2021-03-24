@@ -1,47 +1,78 @@
-.cards-container{
-    display: grid;
-    grid-auto-rows: 80px;
-    grid-gap: 10px;
-    justify-content: center;
-    direction: rtl;
+.cards-container {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+  max-width: 81rem;
+  margin: auto;
 }
 
-.card{
-    width: 260px;
-    height: 40px;
-    border-radius: 4px;
-    border: solid 1px #ebebeb;
-    background-color: #ffffff;
-    margin: 20px;
-    text-align: center;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    transition: 0.5s;
+@media only screen and (max-width: 80rem) {
+  .cards-container {
+    max-width: 61rem;
+  }
+}
+@media only screen and (max-width: 80rem) {
+  .cards-container {
+    max-width: 61rem;
+  }
+}
+@media only screen and (max-width: 60rem) {
+  .cards-container {
+    max-width: 41rem;
+  }
+}
+@media only screen and (max-width: 40rem) {
+  .cards-container {
+    max-width: 21rem;
+  }
 }
 
-.text-in-card{
-    font-family: Rubik;
-    line-height: 1.43;
-    letter-spacing: normal;
-    text-align: center;
-    color: #3b3b3b;
-    align-self: center;
-}
-  
-.card#show-card{
-    box-shadow: 0 10px 31px 0 rgba(200, 200, 200, 0.4);
+.centering {
+  width: 100%;
+  align-items: center;
+  text-align: center;
 }
 
-.card:hover, #show-card:hover{
-    box-shadow: 0 5px 14px 0 rgba(206, 206, 206, 0.5);
-    border: solid 1px #afc514;
-    background-color: #ffffff;
-    color: #afc514;
-    cursor: pointer;
+.card {
+  width: 16rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: solid 1px #ebebeb;
+  background-color: #ffffff;
+  margin: 1.25rem;
+  text-align: center;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: center;
+  transition: 0.5s;
 }
 
-#show-card #text-in-card{
-    color: #afc514;
-    border-bottom: 0.8px solid;
+.text-in-card {
+  font-family: Rubik;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3b3b3b;
+  align-self: center;
+}
+
+.card#show-card {
+  box-shadow: 0 0.6rem 2rem 0 rgba(200, 200, 200, 0.4);
+}
+
+.card:hover,
+#show-card:hover {
+  box-shadow: 0 0.3rem 1rem 0 rgba(206, 206, 206, 0.5);
+  border: solid 1px #afc514;
+  background-color: #ffffff;
+  color: #afc514;
+  cursor: pointer;
+}
+
+#show-card #text-in-card {
+  color: #afc514;
+  border-bottom: 0.8px solid;
 }

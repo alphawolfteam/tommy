@@ -1,0 +1,50 @@
+#root {
+  width: 100%;
+  font-family: rubik;
+  font-size: 1rem;
+  text-align: center;
+  direction: rtl;
+}
+
+.action-buttons {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.action-buttons button {
+  margin: auto;
+  width: 7rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  font-family: rubik;
+  font-size: 1rem;
+  color: white;
+}
+
+#continue-btn {
+  background-color: #3f9c67;
+  margin-left: 2.5rem;
+}
+
+#continue-btn:hover {
+  background-color: #afc514;
+}
+
+#cancel-btn {
+  background-color: lightcoral;
+  margin-right: 2.5rem;
+}
+
+#cancel-btn:hover {
+  background-color: red;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: #3f9c67 !important;
+}
+
+:host ::ng-deep .mat-checkbox-inner-container {
+  margin-left: 0.8rem !important;
+}

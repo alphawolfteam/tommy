@@ -27,6 +27,7 @@
   <div id="bottomContainer">
     <div id="statusProgressContainer">
       <p *ngIf="getGroup()">{{ getGroup() }}</p>
+      <p *ngIf="getLastTransferDate()">{{ getLastTransferDate() }}</p>
       <p *ngIf="getNetwork()">{{ getNetwork() }}</p>
       <p *ngIf="getService()">{{ getService() }}</p>
     </div>

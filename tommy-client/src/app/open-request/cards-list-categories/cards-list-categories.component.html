@@ -1,0 +1,24 @@
+<div class="cards-container" [ngStyle]="gridColumnStyle">
+  <div
+    class="card"
+    *ngFor="let listItem of cardsListToDisplay"
+    (click)="onSelectCard(listItem)"
+  >
+    <span
+      class="text-in-card"
+      [ngStyle]="{ 'font-size': getStyle(listItem) }"
+      >{{ getDisplayName(listItem) }}</span
+    >
+  </div>
+  <div
+    class="card"
+    id="show-card"
+    *ngIf="limit === 7 && servicesWithCategories.length > limit"
+    (click)="showMore()"
+  >
+    <span class="text-in-card">הראה עוד...</span>
+  </div>
+  <div class="card" id="show-card" *ngIf="limit > 7" (click)="showLess()">
+    <span class="text-in-card">הראה פחות...</span>
+  </div>
+</div>

@@ -15,7 +15,7 @@ module.exports = {
     },
     userCallsHeaderValidator: (req) => {
         if (req.header('X-Obj-Attrs')) {
-            if (req.header('X-Obj-Attrs') == "status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active") {
+            if (req.header('X-Obj-Attrs') == "status, summary, description, open_date, z_network, z_impact_service, group, web_url, type, active, z_last_transfer_date") {
                 return true;
             } else if (req.header('X-Obj-Attrs') == "description, open_date") {
                 return true;
@@ -49,7 +49,7 @@ module.exports = {
         } return false;
     },
     updatesValidator: (req) => {
-        if (req.header('Content-Type') == 'application/json' && req.header('X-Obj-Attrs') == 'category, description, open_date, summary, z_network') {
+        if (req.header('Content-Type') == 'application/json' && req.header('X-Obj-Attrs') == 'category, description, open_date, summary, z_network, z_impact_service') {
             if (req.query.WC == "type='I' and active=1 and impact=1") {
                 return true;
             }
@@ -69,6 +69,11 @@ module.exports = {
     },
     isUserSupporter: (req) => {
         if (req.query.WC.split("=")[0] == "z_pri_grp") {
+            return true;
+        } return false;
+    },
+    isOrganization: (req) => {
+        if (req.header('X-Obj-Attrs') == 'organization') {
             return true;
         } return false;
     }

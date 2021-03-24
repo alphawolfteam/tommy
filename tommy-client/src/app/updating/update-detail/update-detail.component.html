@@ -1,7 +1,7 @@
 <mat-nav-list>
     <h1>עדכון</h1>
     <h5>{{ data.open_date }}</h5>
-    <p *ngIf="data.z_network" id="network">רשת: {{ data.z_network }}</p>
-    <p class="update-data">{{ data.name }}</p>
-    <p class="update-data">{{ data.description }}</p>
+    <p *ngIf="data.z_network && data.z_impact_service" id="network" dir="rtl"> תקלה רוחבית בשירות "{{data.z_impact_service}}" ברשת "{{data.z_network}}": </p>
+    <p class="update-data">"{{ data.name }}</p>
+    <p class="update-data">{{ data.description }}"</p>
 </mat-nav-list>

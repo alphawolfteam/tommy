@@ -1,5 +1,8 @@
 <div class="boundary">
-    <!-- <app-preloader></app-preloader> -->
-    <app-header [userName]="userName"></app-header>
-    <router-outlet></router-outlet>
+  <app-preloader></app-preloader>
+  <app-header
+    [userName]="userName"
+    [tutorialUrl]="openConf.homepageTutorialVideoUrl"
+  ></app-header>
+  <router-outlet></router-outlet>
 </div>

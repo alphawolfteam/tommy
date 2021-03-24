@@ -154,7 +154,7 @@ textarea:focus {
   text-decoration: none;
   background: #3f9c67;
   padding: 20px;
-  margin-top: 5.2vh;
+  margin-top: 1vh;
   font-family: Rubik;
   width: 20vh;
   border-radius: 50px;
@@ -241,4 +241,50 @@ input::-webkit-inner-spin-button {
 
 #phoneWrapper {
   display: inherit;
+}
+
+#places:hover {
+  direction: rtl;
+  border: solid 1px #afc514;
+  align-items: center;
+  cursor: pointer;
+}
+
+#places-div{
+  display: grid;
+  grid-gap: 20px;
+  padding: 10px;
+  justify-content: center;
+}
+
+#places {
+  width: 280px;
+  padding: 5px;
+  outline: none;
+  direction: rtl;
+  border-radius: 4px;
+  border: solid 1px #ebebeb;
+  background-color: #fff;
+  transition: 0.5s;
+  font-size: 14px;
+  line-height: 1.43;
+  text-align-last:center;
+}
+/* option {
+  text-align: left;
+  text-align-last:left;
+  background-color: indigo;
+
+} */
+
+
+.place {
+  direction: rtl;
+  /* text-align-last:left; */
+  /* margin-right: 20px; */
+  /* background-color: orange; */
+}
+
+:host ::ng-deep .data-loader {
+  margin-top: 0;
 }

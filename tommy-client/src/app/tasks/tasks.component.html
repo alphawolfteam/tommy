@@ -18,12 +18,17 @@
       <div (click)="refresh()">
         <img src="../../assets/refresh.png" id="refresh">
       </div>
-      <div (click)="openRequest()" class="new-task-button">
+      <div (click)="openRequest()" *ngIf="lehavaDataService.isLoaded | async; else newTaskDisabled" class="new-task-button">
         <span id="button-text">קריאה חדשה</span>
         <span id="button-plus">
           <img src="../../assets/plus.svg" class="plus">
         </span>
       </div>
+      <ng-template #newTaskDisabled>
+        <div class="new-task-button disabled">
+          <span id="button-text">טוען נתונים...</span>
+        </div>
+      </ng-template>
     </div>
     <app-search-bar (textChanged)="searchTextChanged($event)"></app-search-bar>
   </div>
