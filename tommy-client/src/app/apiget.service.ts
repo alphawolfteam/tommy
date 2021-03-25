@@ -277,11 +277,11 @@ export class ApigetService {
     );
   }
 
-  getHichatIframe() {
-    return this.http.get(config.GET_HICHAT_IFRAME_URL, {
-      withCredentials: true,
-    });
-  }
+  // getHichatIframe() {
+  //   return this.http.get(config.GET_HICHAT_IFRAME_URL, {
+  //     withCredentials: true,
+  //   });
+  // }
 
   sendTaskSumMsg(msgObj: object) {
     return this.http.post(config.POST_SEND_HICHAT_MSG, msgObj, {

@@ -92,7 +92,8 @@ export class TasksListComponent {
       taskDate: task.open_date,
       taskLink: task.link,
     };
-    this.aPIgetService.sendTaskSumMsg(msg).subscribe(() => {
+    this.aPIgetService.sendTaskSumMsg(msg).subscribe((groupUrlObj: any) => {
+      this.hiChatService.setGroupUrl(groupUrlObj.url); 
       this.openChatBox();
     });
   }

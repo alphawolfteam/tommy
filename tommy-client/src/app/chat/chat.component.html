@@ -2,6 +2,6 @@
     <div id="iframe-container" cdkDragBoundary=".boundary" [cdkDragFreeDragPosition]="dragPosition" cdkDrag>
         <img id="drag-arrows" src="../../assets/arrows_move.svg">
         <img id="x-icon" src="../../assets/x-icon.svg" (click)="closeChat()">
-        <iframe *ngIf="iframeUrl" id="iframe" [src]="getIframeUrl()" scrolling="no"></iframe>
+        <iframe *ngIf="getIframeUrl()" id="iframe" [src]="getIframeUrl()" scrolling="no"></iframe>
     </div>
 </div>
