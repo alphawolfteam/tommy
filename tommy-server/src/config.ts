@@ -59,7 +59,10 @@ export const config = {
     cachedReqsTTL: process.env.CACHED_REQS_TTL
       ? parseInt(process.env.CACHED_REQS_TTL)
       : 86400,
-
+    lehavaDataStoredTimeKey: process.env.REDIS_LEHAVA_DATA_TIME_KEY || "lehavadata:date",
+    lehavaDataTTL: process.env.LEHAVA_DATA_TTL
+      ? parseInt(process.env.LEHAVA_DATA_TTL)
+      : 24,
   },
   lehava_api: {
     serverName: process.env.LEHAVA_API_SERVER_NAME || "localhost",
@@ -151,7 +154,7 @@ ${file.base64}
     loginPass: process.env.LOGIN_PASS || "Aa123456",
     getSupportUsers: async () => {
       try {
-        return ( await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(",") || []);
+        return (await SupportersList.getSupportersList() || process.env.SUPPORT_USERS?.split(",") || []);
       } catch (e) {
         return process.env.SUPPORT_USERS?.split(",") || [];
       }
@@ -164,7 +167,7 @@ ${file.base64}
     ) =>
       `היי, אשמח לעזרה בפנייה מספר: ${taskId}, שנפתחה ב ${taskDate}. ${taskLink ? `לינק בלהבה: ${taskLink}` : "לא קיים לינק בלהבה"
       }`,
-      announcement: process.env.HI_ANNOUNCEMENT || 'שעות המענה הן 08:00-17:00'
+    announcement: process.env.HI_ANNOUNCEMENT || 'שעות המענה הן 08:00-17:00'
 
   },
 };

@@ -1,6 +1,5 @@
 const axios = require("axios");
 import { config } from '../config';
-import { trycatch } from '../utils/util';
 import { logger } from '../utils/logger-client';
 
 // const { chatUrl, chatGroupUrl, chatMessageUrl, chatLoginUrl, loginUser, loginPass } = require("./config/config");
@@ -152,7 +151,7 @@ export class Chat {
         });
         return symmetricDifference;
     };
-    
+
     async setRoomMembers(roomName: string, members: string[]) {
         const currentGroupMembers = await this.getGroupMembers(roomName);
         if (currentGroupMembers && currentGroupMembers.length > 0) {
@@ -169,8 +168,8 @@ export class Chat {
 
         if (result && result.data) {
             const roomId = result.data.group._id;
-            await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.setAnnouncement`, 
-            { roomId , announcement: announcement }, { headers: { ...authHeaders } });
+            await axios.post(`${config.chat.chatUrl}/${config.chat.chatGroupUrl}.setAnnouncement`,
+                { roomId, announcement: announcement }, { headers: { ...authHeaders } });
         }
     };
 

@@ -28,3 +28,10 @@ export class RabbitmqError extends ApplicationError {
         super(message || 'Rabbitmq Error', status || 500);
     }
 }
+
+export class LehavaDataError extends ApplicationError {
+    constructor(message?: string, status?: number) {
+        super(message || 'LehavaData Error', status || 500);
+    }
+}
+
