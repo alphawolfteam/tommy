@@ -1,4 +1,4 @@
-import Axios from "axios";
+import express from "express";
 
 export const trycatch = async (func: Function, ...args: any[]) => {
     const ret: { result?: any, err?: any } = {};
@@ -30,3 +30,8 @@ const example = async () => {
     console.log(`Result is good: ${result}`);
 };
 
+export const wrapController = (func: (req: express.Request, res: express.Response, next?: express.NextFunction) => Promise<void>) => {
+    return (req: express.Request, res: express.Response, next?: express.NextFunction) => {
+        func(req, res, next).catch(next);
+    };
+};

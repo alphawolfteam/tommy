@@ -25,7 +25,11 @@ export default class HichatManager {
             if (redisRes) HichatManager.authToken = redisRes;
         })
 
-        if (!HichatManager.userId || !HichatManager.authToken) await axios({
+        if (!HichatManager.userId || !HichatManager.authToken) HichatManager.fetchAuthData()
+    };
+
+    public static async fetchAuthData() {
+        await axios({
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             url: `${config.chat.chatUrl}/${config.chat.chatLoginUrl}`,
@@ -49,7 +53,7 @@ export default class HichatManager {
             logger(err);
             throw err;
         })
-    };
+    }
 
     private static async getAuthHeaders(): Promise<object> {
 
@@ -173,7 +177,7 @@ export default class HichatManager {
         return result;
     };
 
-    private static async addMembersToGroup(roomName: string, members: string[]) {
+    private static addMembersToGroup(roomName: string, members: string[]) {
         const promises = members.map(member => HichatManager.addMemberToGroupFactory(roomName, member));
         return Promise.all(promises);
     };
@@ -231,10 +235,10 @@ export default class HichatManager {
         return result;
     };
 
-    public static async isGroupExists(userT: string): Promise<boolean> {
+    public static async isGroupExists(userT: string): Promise<any> {
         const builtTommyGroupName = HichatManager.buildGroupName(userT);
         const normalizedGroupName = HichatManager.getAllowedGroupTitleFromText(builtTommyGroupName);
-        return HichatManager.getGroupInfo(normalizedGroupName).then(() => true).catch(() => false);
+        return HichatManager.getGroupInfo(normalizedGroupName).then(() => ({exists: true, groupName: normalizedGroupName})).catch(() => ({exists: false}));
     }
 
 
