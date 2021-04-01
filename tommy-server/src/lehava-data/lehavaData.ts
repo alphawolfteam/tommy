@@ -12,6 +12,7 @@ class LehavaData {
     this.categoryService = new CategoryService();
   }
 
+
   getAllData = async () => {
     try {
       const networks = await this.getNetworks();
@@ -29,6 +30,7 @@ class LehavaData {
     }
   };
 
+  // Removes all services that have no categories.
   removeNoCatergoriesServices = (networks: Network[]) => {
     return networks.map((network: Network) => {
       network.services = network.services.filter( (service: Service) => service.categories.length > 0 )
@@ -81,7 +83,6 @@ class LehavaData {
         serviceName: res["@COMMON_NAME"],
       };
     }
-    let services: any[] = [];
 
     if (!Array.isArray(servicesResponse)) {
       return [handleLehavaResponse(servicesResponse.service)]

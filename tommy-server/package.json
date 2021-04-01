@@ -34,6 +34,7 @@
     "helmet": "^3.21.3",
     "http-proxy-middleware": "^1.0.1",
     "menashmq": "0.0.5",
+    "moment": "^2.29.1",
     "passport": "^0.4.1",
     "passport-shraga": "^1.4.0",
     "redis": "^3.0.2",

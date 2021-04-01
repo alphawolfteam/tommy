@@ -11,6 +11,7 @@ export default class MetadataCache {
     private static client: redis.RedisClient = redis.createClient(config.redis.host);
     static getRedis = promisify(MetadataCache.client.get).bind(MetadataCache.client);
     static setRedis = promisify(MetadataCache.client.setex).bind(MetadataCache.client);
+    static setRedisNoExpiry = promisify(MetadataCache.client.set).bind(MetadataCache.client);
 
     public static async metadataHttpCacheMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
 

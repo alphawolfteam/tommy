@@ -1,6 +1,6 @@
 const axios = require("axios");
 import { config } from '../config';
-import { trycatch } from '../utils/util';
+import { trycatch } from '../utils';
 
 // const { chatUrl, chatGroupUrl, chatMessageUrl, chatLoginUrl, loginUser, loginPass } = require("./config/config");
 // const { trycatch } = require("./utils/util");
