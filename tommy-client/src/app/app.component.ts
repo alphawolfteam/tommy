@@ -36,7 +36,7 @@ export class AppComponent {
 
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
-
+  isUserUuidSetted: boolean = false;
   constructor(
     @Inject(DOCUMENT) document,
     public apigetService: ApigetService,
@@ -75,14 +75,23 @@ export class AppComponent {
         this.postReqService.userUUID = this.userUUID;
         this._eventEmmiter.sendMsg(this.userUUID);      
         this.updatePlaces() 
-      });
+      });      
       this.authService.setPhone(this.phoneNumber);  
     });
     this.apigetService.getOpenConfig().subscribe((res: any) => {
       this.openConf = res;
     });
     this.lehavaDataService.setLehavaData();
+    setTimeout(() => {
+      this.isUserUuidSetted = true;
+    }, 1500);
     // console.clear();
+  }
+
+  isLehavaConnection() {
+    console.log(!!(this.isUserUuidSetted && this.userUUID));
+    
+    return !!(this.isUserUuidSetted && this.userUUID)
   }
 
   onHome() {

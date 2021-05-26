@@ -21,7 +21,7 @@ services:
       NODE_ENV: development
       AUTH_CALLBACK_URL: /auth/callback
       PORT: 80
-      SHRAGA_URL: http://13.79.7.3
+      SHRAGA_URL: https://shraga-prod.northeurope.cloudapp.azure.com
       CLIENT_URL: http://client-nginx:3000
       REDIS_URL: "redis://redis:6379"
       RABBITMQ_URL: "amqp://rabbitmq:5672"

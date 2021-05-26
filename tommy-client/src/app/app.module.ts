@@ -29,6 +29,7 @@ import { TomAlertDialog } from "./tasks/tom-alert-dialog/tom-alert-dialog.compon
 import { MatInputModule } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
 import { ChatComponent } from "./chat/chat.component";
+import { ErrorComponent } from "./errorpage/errorpage.component";
 import { TasksListComponent } from "./tasks/tasks-list/tasks-list.component";
 import { SharedModule } from "./shared.module";
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
@@ -52,6 +53,7 @@ import { MatCheckboxModule } from "@angular/material";
     TasksListComponent,
     BottomUpdateDetailSheet,
     TomAlertDialog,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
