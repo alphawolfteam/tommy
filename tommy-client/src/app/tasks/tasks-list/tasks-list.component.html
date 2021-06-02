@@ -15,7 +15,7 @@
                     </ng-template>
                 </div>
                 <ng-template #yetTreated>
-                    <img class="cancelImg" src="{{ trashIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
+                    <img *ngIf="task.status !== 'בטיפול'" class="cancelImg" src="{{ trashIcon }}" (click)="closeTask(task)" matTooltip="לסגירת הפניה לחץ כאן">
                 </ng-template>
             </div>
             <ng-template #nonActive>
