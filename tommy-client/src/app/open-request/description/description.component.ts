@@ -242,7 +242,7 @@ export class DescriptionComponent implements OnInit {
 
   updatePlaces() {
     this.placesList = this.specPlaceService.placesList
-      ? this.specPlaceService.placesList
+      ? this.specPlaceService.placesList.sort()
       : [];
     this.initialPlace = {
       id: this.specPlaceService.specPlace.id,
