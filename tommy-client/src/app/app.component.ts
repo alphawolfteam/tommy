@@ -88,9 +88,7 @@ export class AppComponent {
     // console.clear();
   }
 
-  isLehavaConnection() {
-    console.log(!!(this.isUserUuidSetted && this.userUUID));
-    
+  isLehavaConnection() {    
     return !!(this.isUserUuidSetted && this.userUUID)
   }
 
