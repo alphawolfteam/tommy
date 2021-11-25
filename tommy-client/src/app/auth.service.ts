@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ApigetService } from './apiget.service';
-import { config } from './../environments/config.dev';
-
+import { Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { ApigetService } from "./apiget.service";
+import { config } from "./../environments/config.dev";
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: "any",
 })
 export class AuthService {
-
   public userName: string;
   public user: any;
   public userT: string;
@@ -17,7 +15,12 @@ export class AuthService {
   public phone: [];
   public phoneNumbersArray: string[];
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, public api: ApigetService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    public api: ApigetService
+  ) {}
 
   login() {
     this.http.get(`/user`, { withCredentials: true }).subscribe((res: any) => {
@@ -25,8 +28,17 @@ export class AuthService {
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
       this.phone = res.phoneNumbers;
-      this.api.getUUID(this.userT).subscribe((res: any) => {
-        this.userUUID = res.collection_cnt.cnt['@id'];
+      // this.api.getUUID(this.userT).subscribe((res: any) => {
+      //   this.userUUID = res.collection_cnt.cnt['@id'];
+      // });
+      this.api.getUUID(this.userT).subscribe({
+        next: (x: any) => {
+          if (x.collection_cnt?.cnt)
+            this.userUUID = x.collection_cnt.cnt["@id"];
+        },
+        error: (err: any) => {
+          console.log("Error connection to LehavaAPI");
+        },
       });
     });
   }
@@ -70,7 +82,7 @@ export class AuthService {
   public setPhone(phoneNumbersArray: string[]) {
     this.phoneNumbersArray = phoneNumbersArray;
   }
-  
+
   public getPhone() {
     return this.phoneNumbersArray;
   }
@@ -78,5 +90,4 @@ export class AuthService {
   public getUuid() {
     return this.userUUID;
   }
-
 }

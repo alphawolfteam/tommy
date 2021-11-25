@@ -1,9 +1,9 @@
 <div class="boundary">
   <app-preloader></app-preloader>
-  <ng-container *ngIf="isLehavaConnection(); else noLehavaConnection">
+  <ng-container *ngIf="lehavaConnection; else noLehavaConnection">
     <app-header
-    [userName]="userName"
-    [tutorialUrl]="openConf.homepageTutorialVideoUrl"
+      [userName]="userName"
+      [tutorialUrl]="openConf.homepageTutorialVideoUrl"
     ></app-header>
     <router-outlet></router-outlet>
   </ng-container>

@@ -20,7 +20,7 @@ import { logger } from "../../utils/logger-client";
           { serviceName: "Redis", isAlive: true },
           { serviceName: "Access Token", isAlive: true },
         ];
-        const clientPromise = new Promise((resolve, reject) =>
+        const clientPromise = new Promise<void>((resolve, reject) =>
           axios
             .get(`${config.client.url}/isaliveclient`)
             .then((response) => resolve())
@@ -28,7 +28,7 @@ import { logger } from "../../utils/logger-client";
   
         );
   
-        const rabbitPromise = new Promise((resolve, reject) => {
+        const rabbitPromise = new Promise<void>((resolve, reject) => {
           amqp.connect(config.rabbitmq.url, (err, connection) => {
             if (err) {
               reject(servicesArray[2].isAlive = false)
@@ -40,7 +40,7 @@ import { logger } from "../../utils/logger-client";
           );
         });
   
-        const redisPromise = new Promise((resolve, reject) => {
+        const redisPromise = new Promise<void>((resolve, reject) => {
   
           if (redisClient.set('key', 'value')) {
             resolve();
@@ -50,7 +50,7 @@ import { logger } from "../../utils/logger-client";
           }
         });
   
-        const accessTokenPromise = new Promise((resolve, reject) => {
+        const accessTokenPromise = new Promise<void>((resolve, reject) => {
           AccessTokenProvider.getAccessToken()
             .then(() => resolve())
             .catch(() => reject(servicesArray[4].isAlive = false))

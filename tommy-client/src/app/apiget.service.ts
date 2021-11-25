@@ -290,6 +290,12 @@ export class ApigetService {
     });
   }
 
+  getLehavaHealthStatus() {
+    return this.http.get(config.LEHAVA_HEALTH_CHECK_URL, {
+      withCredentials: true,
+    });
+  }
+
   updateTaskStatus(
     taskType: "in" | "chg",
     taskId: string,

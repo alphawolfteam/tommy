@@ -1,13 +1,11 @@
-const lehavaData = require('../config/lehavaData')
-const hiData = require('../config/hichat.credentials')
-const validator = require('../validators/mainValidator')
-const arraysearch = require('../modules/arraysearch')
-const headerValidators = require('../routes/api.router')
-const Call = require('../modules/newCall');
-const hichatTools = require('../modules/hichat.tools')
-const {
-    json
-} = require('express')
+const lehavaData = require("../config/lehavaData");
+const hiData = require("../config/hichat.credentials");
+const validator = require("../validators/mainValidator");
+const arraysearch = require("../modules/arraysearch");
+const headerValidators = require("../routes/api.router");
+const Call = require("../modules/newCall");
+const hichatTools = require("../modules/hichat.tools");
+const { json } = require("express");
 
 module.exports = (app) => {
   // Header Values Middleware-Validator
@@ -41,24 +39,23 @@ module.exports = (app) => {
     //         error: "WC Parameter not set properly"
     //     });
     // }
-  });  
+  });
 
-    // GET all locations details
-    app.get('/caisd-rest/loc', (req, res) => {
-        // if (validator.allLocationsWCValidator(req)) {
-            res.json(lehavaData.all_locations);
-        // } else {
-            // res.status(400).send({
-                // error: "WC Parameter not set properly"
-            // });
-        })
-    
+  // GET all locations details
+  app.get("/caisd-rest/loc", (req, res) => {
+    // if (validator.allLocationsWCValidator(req)) {
+    res.json(lehavaData.all_locations);
+    // } else {
+    // res.status(400).send({
+    // error: "WC Parameter not set properly"
+    // });
+  });
 
-     // GET all location by Organization uuid
-     app.get('/caisd-rest/org', (req, res) => {
-         console.log('organization location:', lehavaData.organizations)
-         res.json(lehavaData.organizations);
-     });
+  // GET all location by Organization uuid
+  app.get("/caisd-rest/org", (req, res) => {
+    console.log("organization location:", lehavaData.organizations);
+    res.json(lehavaData.organizations);
+  });
 
   // GET all network's services by network's unique id
   app.get("/caisd-rest/z_networks_to_service", (req, res) => {
@@ -115,23 +112,32 @@ module.exports = (app) => {
 
   // Lehava | GET user Unique id by T username
   // Lehava | GET Supporters List
-  app.get('/caisd-rest/cnt', async (req, res) => {
+  app.get("/caisd-rest/cnt", async (req, res) => {
     if (validator.isOrganization(req)) {
-        console.log('organizations:', lehavaData.users[0].data);
-        res.json(lehavaData.users[0].data);
+      console.log("organizations:", lehavaData.users[0].data);
+      res.json(lehavaData.users[0].data);
     }
     if (validator.isUserSupporter(req)) {
-        res.json(lehavaData.supporters);
+      res.json(lehavaData.supporters);
     } else {
-        if (validator.userExistsValidator(req)) {
-            res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
-        } else {
-            res.status(400).send({
-                error: `User:${req.query.WC.split("'")[1]} Doesn't Exist`
-            });
-        }
+      if (validator.userExistsValidator(req)) {
+        res.json(
+          lehavaData.users[
+            arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)
+          ].data
+        );
+        // res.json({
+        //   collection_cnt: {
+        //     '@TOTAL_COUNT': '0',
+        // }
+        // });
+      } else {
+        res.status(400).send({
+          error: `User:${req.query.WC.split("'")[1]} Doesn't Exist`,
+        });
+      }
     }
-    });
+  });
 
   // GET user active and non-active calls by user unique id
   app.get("/caisd-rest/cr", (req, res) => {
@@ -257,7 +263,6 @@ module.exports = (app) => {
         }
       }
     } else if (validator.updatesValidator(req)) {
-      console.log("elseee");
       let sendMsg = lehavaData.updates;
       res.send(sendMsg);
     } else {
@@ -346,8 +351,7 @@ module.exports = (app) => {
   // HiChat | Server Response Mock For GET HichatUrl
   app.get("/hichat/exampleurl", (req, res) => {
     res.send({
-      url:
-        "https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html",
+      url: "https://www.ynet.co.il/Ext/App/TalkBack/CdaViewOpenTalkBack/0,11382,L-3190779-3,00.html",
     });
   });
 

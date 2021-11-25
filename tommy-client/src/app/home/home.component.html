@@ -1,10 +1,16 @@
-<div id="home"> 
+<ng-container *ngIf="isUserHasLehavaAccount(); else noUser">
+  <div id="home">
     <div class="flex-container">
-        <app-tasks *ngIf="this.authService.getUuid()" class="task-component"></app-tasks>
-        <app-updating class="updating-component"></app-updating>
+      <app-tasks
+        *ngIf="this.authService.getUuid()"
+        class="task-component"
+      ></app-tasks>
+      <app-updating class="updating-component"></app-updating>
     </div>
-    <button style="display: none;" id="btnChat" (click)="chatTag()" mat-fab>
-        <img class="chatImg" src="../assets/chat.png">
+    <button style="display: none" id="btnChat" (click)="chatTag()" mat-fab>
+      <img class="chatImg" src="../assets/chat.png" />
     </button>
     <app-chat id="chatBox" *ngIf="getHiChat()"></app-chat>
-</div>
+  </div>
+</ng-container>
+<ng-template #noUser> </ng-template>
