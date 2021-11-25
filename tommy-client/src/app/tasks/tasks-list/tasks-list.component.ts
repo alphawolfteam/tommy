@@ -10,7 +10,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MatTooltipDefaultOptions,
 } from "@angular/material/tooltip";
-import { HiChatService } from 'src/app/hichat.service';
+import { HiChatService } from "src/app/hichat.service";
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 500,
@@ -93,7 +93,7 @@ export class TasksListComponent {
       taskLink: task.link,
     };
     this.aPIgetService.sendTaskSumMsg(msg).subscribe((groupUrlObj: any) => {
-      this.hiChatService.setGroupUrl(groupUrlObj.url); 
+      this.hiChatService.setGroupUrl(groupUrlObj.url);
       this.openChatBox();
     });
   }

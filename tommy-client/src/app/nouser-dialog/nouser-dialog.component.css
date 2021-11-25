@@ -1,0 +1,165 @@
+p {
+  font-family: Rubik;
+  cursor: context-menu;
+}
+
+h3 {
+  cursor: context-menu;
+  font-family: rubik;
+}
+
+#closeButton {
+  border: none;
+  border-radius: 40px;
+  background-color: white;
+  color: rgb(105, 105, 105);
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  top: -20px;
+  left: -20px;
+}
+
+#closeButton:focus {
+  outline: 0;
+}
+
+.title {
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+}
+
+#taskNameDecorationClosed {
+  width: 9px;
+  height: 9px;
+  border: solid 1px #ff2323;
+  border-radius: 10px;
+  background-color: #ffb7b7;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+#taskNameDecoration {
+  width: 9px;
+  height: 9px;
+  border: solid 1px #37c306;
+  border-radius: 10px;
+  background-color: #d7ffc9;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+#taskId {
+  width: 97px;
+  height: 20px;
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #3b3b3b;
+  margin-right: 10px;
+}
+
+#midContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #d8d8d8;
+  position: relative;
+}
+
+#midContainer:before {
+  content: ’’;
+  position: absolute;
+  /* bottom: 0; */
+  width: 80%;
+  left: 10%;
+  /*this centers it based on the above width*/
+  border-bottom: 1px solid lightcoral;
+}
+
+.inline {
+  display: inline-block;
+}
+
+#statusProgressContainer {
+  border-left: 1px solid #d8d8d8;
+  padding-left: 20px;
+  min-width: 175px;
+}
+
+#descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-right: 30px;
+}
+
+#bottomContainer {
+  display: flex;
+  direction: rtl;
+  padding-top: 15px;
+  max-height: 237px;
+  overflow: hidden;
+}
+
+#description {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 420px;
+}
+
+#topContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.mat-typography {
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: -20px;
+}
+
+#taskName {
+  margin-right: 10px;
+  direction: rtl;
+}
+
+#taskCategory {
+  margin-right: 10px;
+}
+
+#taskOpenDate {
+  margin-right: 10px;
+}
+
+#timeTillTreatment {
+  font-family: Rubik;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: #696969;
+  margin-right: 10px;
+  transform: translate(0%, -30%);
+}
+
+.sub-title {
+  font-weight: lighter;
+}

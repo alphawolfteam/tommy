@@ -26,6 +26,7 @@ import axios from "axios";
 import amqp from "amqplib/callback_api";
 import { AccessTokenProvider } from "./access-token/access-token-service";
 import { healthCheck } from './utils/middlewares/health'
+import HealthRouter from './health/health.router';
 
 export class Server {
   public app: express.Application;
@@ -62,6 +63,8 @@ export class Server {
     this.app.use("/api", AuthenticationMiddleware.requireAuth, LehavaRouter);
     this.app.use("/hichat", AuthenticationMiddleware.requireAuth, HichatRouter);
     this.app.use("/lehavadata", AuthenticationMiddleware.requireAuth, LehavaDataRouter);
+    this.app.use("/thirdpartyhealth", AuthenticationMiddleware.requireAuth, HealthRouter);
+
     this.initializeErrorHandler();
     this.app.get(
       "/user",
