@@ -1,4 +1,4 @@
-FROM node:13-alpine as build
+FROM node:14-alpine as build
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --silent
