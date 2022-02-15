@@ -109,7 +109,7 @@ export class PostReqService {
 
   private getRequestObject(otherUserT?: string): object {
     let otherUUid: string;
-    if (otherUserT) {
+    if (otherUserT !== this.userT) {
       this.apigetService.getUUID(otherUserT).subscribe((res: any) => {
         if (Array.isArray(res.collection_cnt.cnt)) {
           if (res.collection_cnt.cnt)
@@ -136,7 +136,7 @@ export class PostReqService {
 
   private getIncidentObject(otherUserT?: string): object {
     let otherUUid: string;
-    if (otherUserT) {
+    if (otherUserT !== this.userT) {
       this.apigetService.getUUID(otherUserT).subscribe((res: any) => {
         if (Array.isArray(res.collection_cnt.cnt)) {
           if (res.collection_cnt.cnt)
