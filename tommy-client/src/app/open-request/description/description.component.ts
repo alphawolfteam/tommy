@@ -130,11 +130,11 @@ export class DescriptionComponent implements OnInit {
         this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
         ? this.postReqService
-            .postWithFileAppeal()
+            .postWithFileAppeal(this.userTInput)
             .subscribe((res: PostResponse) => {
               this.finishRequestDialog(res);
             })
-        : this.postReqService.postAppeal().subscribe((res: PostResponse) => {
+        : this.postReqService.postAppeal(this.userTInput).subscribe((res: PostResponse) => {
             this.finishRequestDialog(res);
           });
     } else {
