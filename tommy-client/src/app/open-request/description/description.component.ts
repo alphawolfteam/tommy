@@ -109,7 +109,7 @@ export class DescriptionComponent implements OnInit {
     this.file = undefined;
   }
 
-  sendPost() {
+  async sendPost() {
     if (
       this.locationInput &&
       this.phoneInput &&
@@ -129,12 +129,12 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.z_location =
         this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
-        ? this.postReqService
-            .postWithFileAppeal(this.userTInput)
+        ? (await this.postReqService
+            .postWithFileAppeal(this.userTInput))
             .subscribe((res: PostResponse) => {
               this.finishRequestDialog(res);
             })
-        : this.postReqService.postAppeal(this.userTInput).subscribe((res: PostResponse) => {
+        : (await this.postReqService.postAppeal(this.userTInput)).subscribe((res: PostResponse) => {
             this.finishRequestDialog(res);
           });
     } else {

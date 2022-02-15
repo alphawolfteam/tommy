@@ -50,15 +50,15 @@ export class PostReqService {
     return this.isIncident ? this.postIncident(otherUserT) : this.postRequest(otherUserT);
   }
 
-  postIncident(otherUserT?: string) {
-    return this.http.post(config.POST_NEW_INCIDENT, this.getIncidentObject(otherUserT), {
+  async postIncident(otherUserT?: string) {
+    return this.http.post(config.POST_NEW_INCIDENT, await this.getIncidentObject(otherUserT), {
       headers: this.requestHead,
       withCredentials: true,
     });
   }
 
-  postRequest(otherUserT?: string) {
-    return this.http.post(config.POST_NEW_REQUEST, this.getRequestObject(otherUserT), {
+  async postRequest(otherUserT?: string) {
+    return this.http.post(config.POST_NEW_REQUEST, await this.getRequestObject(otherUserT), {
       headers: this.requestHead,
       withCredentials: true,
     });
@@ -70,10 +70,10 @@ export class PostReqService {
       : this.postWithFileRequest(otherUserT);
   }
 
-  postWithFileIncident(otherUserT?: string) {
+  async postWithFileIncident(otherUserT?: string) {
     const requestBody = {
       postType: "in",
-      ...this.getIncidentObject(otherUserT),
+      ...(await this.getIncidentObject(otherUserT)),
       file: this.file,
     };
 
@@ -83,10 +83,10 @@ export class PostReqService {
     });
   }
 
-  postWithFileRequest(otherUserT?: string) {
+  async postWithFileRequest(otherUserT?: string) {
     const requestBody = {
       postType: "chg",
-      ...this.getRequestObject(otherUserT),
+      ...(await this.getRequestObject(otherUserT)),
       file: this.file,
     };
 
@@ -107,24 +107,21 @@ export class PostReqService {
       : postRes.chg["@COMMON_NAME"];
   }
 
-  private getRequestObject(otherUserT?: string): object {
-    let otherUUid: string;
-    if (otherUserT !== this.userT) {
-      this.apigetService.getUUID(otherUserT).subscribe((res: any) => {
-        if (Array.isArray(res.collection_cnt.cnt)) {
-          if (res.collection_cnt.cnt)
-          otherUUid = res.collection_cnt.cnt[1]["@id"];
-        } else {
-          otherUUid = res.collection_cnt.cnt["@id"];
-          if (res.collection_cnt.cnt)
-          otherUUid = res.collection_cnt.cnt["@id"];
-        }
-      });
+  private async getRequestObject(otherUserT?: string): Promise<object> {
+    let requestorId: string;
+    const uuid: any = await this.apigetService.getUUID(otherUserT || this.userT).toPromise();
+    if (Array.isArray(uuid.collection_cnt.cnt)) {
+      if (uuid.collection_cnt.cnt)
+      requestorId = uuid.collection_cnt.cnt[1]["@id"];
+    } else {
+      requestorId = uuid.collection_cnt.cnt["@id"];
+      if (uuid.collection_cnt.cnt)
+      requestorId = uuid.collection_cnt.cnt["@id"];
     }
     return {
       chg: {
         requestor: {
-          "@id": otherUUid || this.userUUID,
+          "@id": requestorId || this.userUUID,
         },
         category: {
           "@id": this.categoryId,
@@ -134,24 +131,21 @@ export class PostReqService {
     };
   }
 
-  private getIncidentObject(otherUserT?: string): object {
-    let otherUUid: string;
-    if (otherUserT !== this.userT) {
-      this.apigetService.getUUID(otherUserT).subscribe((res: any) => {
-        if (Array.isArray(res.collection_cnt.cnt)) {
-          if (res.collection_cnt.cnt)
-          otherUUid = res.collection_cnt.cnt[1]["@id"];
-        } else {
-          otherUUid = res.collection_cnt.cnt["@id"];
-          if (res.collection_cnt.cnt)
-          otherUUid = res.collection_cnt.cnt["@id"];
-        }
-      });
+  private async getIncidentObject(otherUserT?: string): Promise<object> {
+    let customerId: string;
+    const uuid: any = await this.apigetService.getUUID(otherUserT || this.userT).toPromise();
+    if (Array.isArray(uuid.collection_cnt.cnt)) {
+      if (uuid.collection_cnt.cnt)
+      customerId = uuid.collection_cnt.cnt[1]["@id"];
+    } else {
+      customerId = uuid.collection_cnt.cnt["@id"];
+      if (uuid.collection_cnt.cnt)
+      customerId = uuid.collection_cnt.cnt["@id"];
     }
     return {
       in: {
         customer: {
-          "@id": otherUUid || this.userUUID,
+          "@id": customerId || this.userUUID,
         },
         category: {
           "@REL_ATTR": this.categoryId,
