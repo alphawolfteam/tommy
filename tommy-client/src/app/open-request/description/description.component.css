@@ -253,7 +253,6 @@ input::-webkit-inner-spin-button {
 #places-div{
   display: grid;
   grid-gap: 20px;
-  padding: 10px;
   justify-content: center;
 }
 
@@ -270,19 +269,10 @@ input::-webkit-inner-spin-button {
   line-height: 1.43;
   text-align-last:center;
 }
-/* option {
-  text-align: left;
-  text-align-last:left;
-  background-color: indigo;
-
-} */
 
 
 .place {
   direction: rtl;
-  /* text-align-last:left; */
-  /* margin-right: 20px; */
-  /* background-color: orange; */
 }
 
 :host ::ng-deep .data-loader {

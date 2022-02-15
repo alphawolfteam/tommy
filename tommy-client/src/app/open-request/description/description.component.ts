@@ -21,8 +21,10 @@ export class DescriptionComponent implements OnInit {
   locationWarning = "";
   phoneWarning = "";
   computerNameWarning = "";
+  userTWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
+  userTInput: string = this.authService.getTuser();
   placesList: model1[] = [];
   initialPlace: model1 = { id: "", value: "" };
   place: string = "";
@@ -180,10 +182,15 @@ export class DescriptionComponent implements OnInit {
     this.place = newPlace;
   }
 
+  setUserT(newUserT: string) {
+    this.userTInput = newUserT;
+  }
+
   inputPlaceholderChanger() {
     this.locationWarning = !this.locationInput ? "red-holder" : "";
     this.phoneWarning = !this.phoneInput ? "red-holder" : "";
     this.computerNameWarning = !this.computerNameInput ? "red-holder" : "";
+    this.userTWarning = !this.userTInput ? "red-holder" : "";
   }
 
   setPhoneFromShraga(phonesArray: string[]) {
