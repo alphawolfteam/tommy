@@ -10,7 +10,7 @@ import HichatManager from "./hichat/hichat.manager";
 
 const LehavaRouter: Router = Router();
 
-LehavaRouter.post("*", AuthorizationMiddleware.postAuthorization, IpMiddleware);
+LehavaRouter.post("*", IpMiddleware);
 
 LehavaRouter.post("/file/*", async (req: Request, res: Response) => {
   const url = `http://${config.lehava_api.host}:${

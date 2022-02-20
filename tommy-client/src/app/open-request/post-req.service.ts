@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ApigetService } from "../apiget.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { config } from "src/environments/config.dev";
 
@@ -20,7 +21,7 @@ interface PostRequestResponse {
   providedIn: "root",
 })
 export class PostReqService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public apigetService: ApigetService) {}
 
   requestHead = new HttpHeaders()
     .set("Content-type", "application/json")
@@ -45,34 +46,34 @@ export class PostReqService {
   
   public isIncident: boolean = true;
 
-  postAppeal() {
-    return this.isIncident ? this.postIncident() : this.postRequest();
+  postAppeal(otherUserT?: string) {
+    return this.isIncident ? this.postIncident(otherUserT) : this.postRequest(otherUserT);
   }
 
-  postIncident() {
-    return this.http.post(config.POST_NEW_INCIDENT, this.getIncidentObject(), {
+  async postIncident(otherUserT?: string) {
+    return this.http.post(config.POST_NEW_INCIDENT, await this.getIncidentObject(otherUserT), {
       headers: this.requestHead,
       withCredentials: true,
     });
   }
 
-  postRequest() {
-    return this.http.post(config.POST_NEW_REQUEST, this.getRequestObject(), {
+  async postRequest(otherUserT?: string) {
+    return this.http.post(config.POST_NEW_REQUEST, await this.getRequestObject(otherUserT), {
       headers: this.requestHead,
       withCredentials: true,
     });
   }
 
-  postWithFileAppeal() {
+  postWithFileAppeal(otherUserT?: string) {
     return this.isIncident
-      ? this.postWithFileIncident()
-      : this.postWithFileRequest();
+      ? this.postWithFileIncident(otherUserT)
+      : this.postWithFileRequest(otherUserT);
   }
 
-  postWithFileIncident() {
+  async postWithFileIncident(otherUserT?: string) {
     const requestBody = {
       postType: "in",
-      ...this.getIncidentObject(),
+      ...(await this.getIncidentObject(otherUserT)),
       file: this.file,
     };
 
@@ -82,10 +83,10 @@ export class PostReqService {
     });
   }
 
-  postWithFileRequest() {
+  async postWithFileRequest(otherUserT?: string) {
     const requestBody = {
       postType: "chg",
-      ...this.getRequestObject(),
+      ...(await this.getRequestObject(otherUserT)),
       file: this.file,
     };
 
@@ -106,35 +107,55 @@ export class PostReqService {
       : postRes.chg["@COMMON_NAME"];
   }
 
-  private getRequestObject(): object {
+  private async getRequestObject(otherUserT?: string): Promise<object> {
+    let requestorId: string;
+    const uuid: any = await this.apigetService.getUUID(otherUserT || this.userT).toPromise();
+    if (Array.isArray(uuid.collection_cnt.cnt)) {
+      if (uuid.collection_cnt.cnt)
+      requestorId = uuid.collection_cnt.cnt[1]["@id"];
+    } else {
+      requestorId = uuid.collection_cnt.cnt["@id"];
+      if (uuid.collection_cnt.cnt)
+      requestorId = uuid.collection_cnt.cnt["@id"];
+    }
     return {
       chg: {
         requestor: {
-          "@id": this.userUUID,
+          "@id": requestorId || this.userUUID,
         },
         category: {
           "@id": this.categoryId,
         },
-        ...this.getCommonBodyProperties(),
+        ...this.getCommonBodyProperties(otherUserT),
       },
     };
   }
 
-  private getIncidentObject(): object {
+  private async getIncidentObject(otherUserT?: string): Promise<object> {
+    let customerId: string;
+    const uuid: any = await this.apigetService.getUUID(otherUserT || this.userT).toPromise();
+    if (Array.isArray(uuid.collection_cnt.cnt)) {
+      if (uuid.collection_cnt.cnt)
+      customerId = uuid.collection_cnt.cnt[1]["@id"];
+    } else {
+      customerId = uuid.collection_cnt.cnt["@id"];
+      if (uuid.collection_cnt.cnt)
+      customerId = uuid.collection_cnt.cnt["@id"];
+    }
     return {
       in: {
         customer: {
-          "@id": this.userUUID,
+          "@id": customerId || this.userUUID,
         },
         category: {
           "@REL_ATTR": this.categoryId,
         },
-        ...this.getCommonBodyProperties(),
+        ...this.getCommonBodyProperties(otherUserT),
       },
     };
   }
 
-  private getCommonBodyProperties(): object {
+  private getCommonBodyProperties(otherUserT?: string): object {
     return {
       z_cst_phone: this.phoneNumber,
       priority: {
@@ -144,7 +165,7 @@ export class PostReqService {
         "@id": `${this.urgency}`,
       },
       z_ipaddress: "1.1.1.1",
-      z_username: this.userT,
+      z_username: otherUserT || this.userT,
       z_computer_name: this.computerName,
       z_current_loc: this.location,
       z_cst_red_phone: this.voip,

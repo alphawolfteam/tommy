@@ -21,8 +21,10 @@ export class DescriptionComponent implements OnInit {
   locationWarning = "";
   phoneWarning = "";
   computerNameWarning = "";
+  userTWarning = "";
   locationInput: string = "";
   phoneInput: string = "";
+  userTInput: string = this.authService.getTuser();
   placesList: model1[] = [];
   initialPlace: model1 = { id: "", value: "" };
   place: string = "";
@@ -107,7 +109,7 @@ export class DescriptionComponent implements OnInit {
     this.file = undefined;
   }
 
-  sendPost() {
+  async sendPost() {
     if (
       this.locationInput &&
       this.phoneInput &&
@@ -127,12 +129,12 @@ export class DescriptionComponent implements OnInit {
       this.postReqService.z_location =
         this.place === "" ? this.place : this.getPlaceId(this.place);
       this.file
-        ? this.postReqService
-            .postWithFileAppeal()
+        ? (await this.postReqService
+            .postWithFileAppeal(this.userTInput))
             .subscribe((res: PostResponse) => {
               this.finishRequestDialog(res);
             })
-        : this.postReqService.postAppeal().subscribe((res: PostResponse) => {
+        : (await this.postReqService.postAppeal(this.userTInput)).subscribe((res: PostResponse) => {
             this.finishRequestDialog(res);
           });
     } else {
@@ -180,10 +182,15 @@ export class DescriptionComponent implements OnInit {
     this.place = newPlace;
   }
 
+  setUserT(newUserT: string) {
+    this.userTInput = newUserT;
+  }
+
   inputPlaceholderChanger() {
     this.locationWarning = !this.locationInput ? "red-holder" : "";
     this.phoneWarning = !this.phoneInput ? "red-holder" : "";
     this.computerNameWarning = !this.computerNameInput ? "red-holder" : "";
+    this.userTWarning = !this.userTInput ? "red-holder" : "";
   }
 
   setPhoneFromShraga(phonesArray: string[]) {
