@@ -14,15 +14,18 @@ export default class HichatController {
                   HichatManager.updateUserGroupMembers(userAdfsId, supportUsers).then(() => {
                       HichatController.sendMsgToGroup(req, res, `${config.chat.hiChatUrl}/${response.groupName}`);
                   });
-                  res.json({ url: `${config.chat.hiChatUrl}/${response.groupName}` });
+                  return res.json({ url: `${config.chat.hiChatUrl}/${response.groupName}` });
               }
               HichatManager.createGroupForUser(userAdfsId, supportUsers).then((groupName) => {
                   HichatController.sendMsgToGroup(req, res, `${config.chat.hiChatUrl}/${response.groupName}`);
-                  res.json({ url: `${config.chat.hiChatUrl}/${groupName}` });
+                  return res.json({ url: `${config.chat.hiChatUrl}/${groupName}` });
               });
           });
         } catch (error) {
-          if(error.code && error.code === '401') return HichatManager.fetchAuthData().then(()=> HichatController.sendMessageToGroup(req, res))
+          if(error.code && error.code === '401'){
+              await HichatManager.fetchAuthData();
+              return HichatController.sendMessageToGroup(req, res)
+          } 
           console.error(error);
         }
     };

@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   isUserHasLehavaAccount(): Boolean {
     // console.log(`lehava user? :true`);
     return !!this.authService.getUuid(); // TODO: before deploying to prod remove this comment
-    // return true;
+    // return true; // FOR DEV LOCALLY: uncomment this and put in comment the line above
   }
 
   openTaskDetailDialog() {
