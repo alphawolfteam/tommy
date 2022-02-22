@@ -16,14 +16,19 @@ class LehavaData {
   getAllData = async () => {
     try {
       const networks = await this.getNetworks();
-
+      console.log('networks', networks);
       for (const network of networks) {
         network.services = await this.getNetworkServices(network.networkId);
+        console.log('network', network);
+        console.log('network.services', network.services);
 
         for (const service of network.services) {
           service.categories = await this.getCategories(network.networkId, service.serviceId)
+          console.log('service', service);
+          console.log('service.categories', service.categories);
         }
       }
+      console.log('this.removeNoCatergoriesServices(networks)', this.removeNoCatergoriesServices(networks));
       return this.removeNoCatergoriesServices(networks)
     } catch (err) {
       console.log(err);
