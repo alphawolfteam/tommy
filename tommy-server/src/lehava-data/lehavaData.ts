@@ -12,23 +12,22 @@ class LehavaData {
     this.categoryService = new CategoryService();
   }
 
-
   getAllData = async () => {
+    console.log("@ getAllData")
     try {
       const networks = await this.getNetworks();
-      console.log('networks', networks);
+
       for (const network of networks) {
         network.services = await this.getNetworkServices(network.networkId);
-        console.log('network', network);
-        console.log('network.services', network.services);
-
+        console.log("Network:" + network.networkName)
         for (const service of network.services) {
+          console.log("== Service: " + service.serviceName)
           service.categories = await this.getCategories(network.networkId, service.serviceId)
-          console.log('service', service);
-          console.log('service.categories', service.categories);
+          const mappedCategories = service.categories.forEach( category => {
+            console.log(`==== Category: ${category.name} - ${category.rel_attr}`)
+          })
         }
       }
-      console.log('this.removeNoCatergoriesServices(networks)', this.removeNoCatergoriesServices(networks));
       return this.removeNoCatergoriesServices(networks)
     } catch (err) {
       console.log(err);
